@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Finder Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#0d9488',
+              'teal-dark': '#0f766e',
+              orange: '#f97316',
+              bg: '#f8fafc',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-bg font-sans text-slate-800 antialiased">
+
+  <section class="relative bg-slate-900 text-white min-h-[500px] flex items-center justify-center bg-cover bg-center px-4 py-16" style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80');">
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      
+      <div class="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700 rounded-full px-4 py-1.5 text-xs text-orange-400 font-semibold tracking-wide">
+        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+        NEW: 2024 GLOBAL EDUCATION RANKINGS
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+        The Smartest Way <br />
+        <span class="text-orange-500">To Find Their Future.</span>
+      </h1>
+
+      <p class="text-slate-300 max-w-xl mx-auto text-sm md:text-base">
+        Unlock potential by discovering schools that match your child's unique learning style. Data-driven insights for parents who want the absolute best.
+      </p>
+
+      <div class="bg-white p-2 rounded-2xl md:rounded-full shadow-2xl max-w-2xl mx-auto flex flex-col md:flex-row gap-2 text-slate-700">
+        <div class="flex-1 flex items-center px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200">
+          <i class="fa-solid fa-magnifying-glass text-slate-400 mr-3"></i>
+          <input type="text" placeholder="Search by school, name..." class="w-full text-sm focus:outline-none bg-transparent" />
+        </div>
+        <div class="flex-1 flex items-center px-4 py-2">
+          <i class="fa-solid fa-location-dot text-slate-400 mr-3"></i>
+          <input type="text" placeholder="City, State, or Zip Code" class="w-full text-sm focus:outline-none bg-transparent" />
+        </div>
+        <button class="bg-brand-teal hover:bg-brand-teal-dark text-white text-sm font-medium px-6 py-3 rounded-xl md:rounded-full flex items-center justify-center gap-2 transition-colors">
+          Search Schools <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <div class="pt-4 flex items-center justify-center gap-3">
+        <div class="flex -space-x-2">
+          <img class="inline-block h-8 w-8 rounded-full ring-2 ring-slate-900" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" alt="User" />
+          <img class="inline-block h-8 w-8 rounded-full ring-2 ring-slate-900" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="User" />
+          <img class="inline-block h-8 w-8 rounded-full ring-2 ring-slate-900" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="User" />
+        </div>
+        <div class="text-left text-xs">
+          <div class="font-semibold text-white">12k+ Parents Joined</div>
+          <div class="text-amber-400">★★★★★ <span class="text-slate-400 text-[10px]">4.9/5 from reviews</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <div class="space-y-6">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-semibold text-brand-teal bg-teal-50 px-2.5 py-1 rounded-md border border-teal-100">DATA-DRIVEN INSIGHTS</span>
+          <h2 class="text-2xl md:text-3xl font-bold mt-3 text-slate-900">Beyond Simple Listings.<br/><span class="text-brand-teal">Deep Academic Insight.</span></h2>
+          <p class="text-slate-500 text-xs leading-relaxed mt-2">We aggregate millions of data points from official reports, student testimonials, and site visits to give you a 360° view of any institution.</p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm flex items-start gap-3">
+            <div class="p-2 bg-teal-50 text-brand-teal rounded-lg text-sm"><i class="fa-solid fa-sliders"></i></div>
+            <div>
+              <h4 class="text-xs font-semibold text-slate-800">Personalized Matching</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Our AI suggests schools based on your child's learning profile and budget.</p>
+            </div>
+          </div>
+
+          <div class="bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm flex items-start gap-3">
+            <div class="p-2 bg-teal-50 text-brand-teal rounded-lg text-sm"><i class="fa-solid fa-calendar-day"></i></div>
+            <div>
+              <h4 class="text-xs font-semibold text-slate-800">Campus Tours & Events</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5">Directly schedule open houses and virtual tours without leaving our platform.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="inline-block text-xs font-medium text-brand-teal underline">Learn About Our Process</a>
+      </div>
+
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div class="w-10 h-10 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center text-lg mb-4">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm">Real-time Stats</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Up-to-the-minute data on teacher-to-student ratios and test scores.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div class="w-10 h-10 bg-teal-50 text-brand-teal rounded-xl flex items-center justify-center text-lg mb-4">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm">Verified Reviews</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Every review is hand-checked to ensure it comes from a real parent or student.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div class="w-10 h-10 bg-sky-50 text-sky-500 rounded-xl flex items-center justify-center text-lg mb-4">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm">Local Insights</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Understand the neighborhood safety, transit, and housing around schools.</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div class="w-10 h-10 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center text-lg mb-4">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm">Global Curriculum</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Compare IB, A-Levels, AP, and local systems side-by-side easily.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900">Elite Schools <span class="text-brand-orange">Excellence Hub</span></h2>
+        <p class="text-slate-500 text-xs mt-1">Our current top-pick institutions recognized for academic innovation, diversity, and superior facilities.</p>
+      </div>
+
+      <div class="flex items-center justify-between md:justify-end gap-4">
+        <div class="bg-slate-200/60 p-1 rounded-xl flex text-xs font-medium text-slate-600">
+          <button class="bg-white text-slate-900 px-3 py-1 rounded-lg shadow-sm">All Types</button>
+          <button class="px-3 py-1 hover:text-slate-900">Private</button>
+          <button class="px-3 py-1 hover:text-slate-900">Charter</button>
+          <button class="px-3 py-1 hover:text-slate-900">Boarding</button>
+        </div>
+        <a href="#" class="text-xs font-medium text-slate-500 hover:text-slate-900">View All Listings &rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col">
+        <div class="relative h-44 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80');">
+          <span class="absolute top-3 left-3 bg-teal-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded">Private K-12</span>
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+            <span class="text-amber-400">★ 4.9</span>
+            <span class="text-[10px] text-slate-300">(84)</span>
+          </div>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Summit Ridge International</h3>
+            <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-100 text-[11px]">
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase">Annual Tuition</span>
+                <span class="font-semibold text-slate-700">$24,500</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase">Enrollment</span>
+                <span class="font-semibold text-slate-700">1,200 Students</span>
+              </div>
+            </div>
+          </div>
+          <button class="w-full bg-slate-50 hover:bg-teal-50 text-brand-teal font-medium text-xs py-2 rounded-xl border border-slate-200 transition-colors">
+            Explore Program &rarr;
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col">
+        <div class="relative h-44 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80');">
+          <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded">Public Charter</span>
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+            <span class="text-amber-400">★ 4.8</span>
+            <span class="text-[10px] text-slate-300">(112)</span>
+          </div>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Heritage Oak Science & Technology</h3>
+            <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-100 text-[11px]">
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase">Annual Tuition</span>
+                <span class="font-semibold text-slate-700">Free (Charter)</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase">Enrollment</span>
+                <span class="font-semibold text-slate-700">850 Students</span>
+              </div>
+            </div>
+          </div>
+          <button class="w-full bg-slate-50 hover:bg-teal-50 text-brand-teal font-medium text-xs py-2 rounded-xl border border-slate-200 transition-colors">
+            Explore Program &rarr;
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm flex flex-col">
+        <div class="relative h-44 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80');">
+          <span class="absolute top-3 left-3 bg-sky-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded">Private Montessori</span>
+          <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+            <span class="text-amber-400">★ 4.7</span>
+            <span class="text-[10px] text-slate-300">(56)</span>
+          </div>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm">Northbrook Montessori Primary</h3>
+            <div class="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-100 text-[11px]">
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase">Annual Tuition</span>
+                <span class="font-semibold text-slate-700">$18,200</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block text-[9px] uppercase">Enrollment</span>
+                <span class="font-semibold text-slate-700">320 Students</span>
+              </div>
+            </div>
+          </div>
+          <button class="w-full bg-slate-50 hover:bg-teal-50 text-brand-teal font-medium text-xs py-2 rounded-xl border border-slate-200 transition-colors">
+            Explore Program &rarr;
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bg-brand-teal text-white py-8 my-8">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-2xl md:text-3xl font-bold">45k+</div>
+        <div class="text-[10px] md:text-xs text-teal-100 uppercase tracking-wider mt-1">Verified Schools</div>
+      </div>
+      <div>
+        <div class="text-2xl md:text-3xl font-bold">98%</div>
+        <div class="text-[10px] md:text-xs text-teal-100 uppercase tracking-wider mt-1">Parent Satisfaction</div>
+      </div>
+      <div>
+        <div class="text-2xl md:text-3xl font-bold">120+</div>
+        <div class="text-[10px] md:text-xs text-teal-100 uppercase tracking-wider mt-1">Cities Covered</div>
+      </div>
+      <div>
+        <div class="text-2xl md:text-3xl font-bold">1.2m</div>
+        <div class="text-[10px] md:text-xs text-teal-100 uppercase tracking-wider mt-1">Annual Visitors</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-lg flex flex-col md:flex-row items-center gap-8">
+      
+      <div class="flex-1 space-y-4">
+        <h3 class="text-xl md:text-2xl font-bold text-slate-900">Not sure where <br/><span class="text-brand-teal">to start?</span></h3>
+        <p class="text-slate-500 text-xs leading-relaxed">Our guided questionnaire helps you narrow down thousands of options into a curated shortlist in under 3 minutes.</p>
+        
+        <ul class="space-y-2 text-xs text-slate-600">
+          <li class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-brand-orange"></i> Define your learning priorities
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-brand-orange"></i> Set your commute range & budget
+          </li>
+          <li class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-brand-orange"></i> Receive a free matching report
+          </li>
+        </ul>
+
+        <button class="bg-brand-orange hover:bg-orange-600 text-white font-medium text-xs px-5 py-2.5 rounded-xl shadow-md transition-colors mt-2">
+          Launch Discovery Tool
+        </button>
+      </div>
+
+      <div class="w-full md:w-1/2 relative bg-slate-100 rounded-2xl h-52 overflow-hidden flex items-end justify-center p-4 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80');">
+        <div class="bg-white/80 backdrop-blur-md p-3 rounded-xl border border-white/40 shadow-lg text-center max-w-xs w-full">
+          <div class="w-7 h-7 bg-brand-teal text-white rounded-full flex items-center justify-center mx-auto -mt-6 mb-1 text-xs shadow-sm">
+            <i class="fa-solid fa-compass"></i>
+          </div>
+          <p class="text-[10px] text-slate-700 italic">"Easy tool showed us three schools we hadn't even considered. The matching process was eye-opening!"</p>
+          <div class="mt-2 text-[10px] font-semibold text-slate-900">— Janet Williams</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
