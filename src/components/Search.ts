@@ -1,34 +1,44 @@
-import { ref, computed, type Ref } from 'vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-export interface SearchOptions<T> {
-  keys: (keyof T)[]
+export interface SearchOptions {
+  /** Target route path for search results (default: '/search') */
+  searchRoute?: string
 }
 
-export function useSearch<T extends Record<string, any>>(
-  items: Ref<T[]>,
-  options: SearchOptions<T>
-) {
-  const searchQuery = ref('')
+export function useSearch(options: SearchOptions = {}) {
+  const { searchRoute = '/search' } = options
+  
+  const router = useRouter()
+  const searchQuery = ref<string>('')
+  const isSearchOpen = ref<boolean>(false)
 
-  const filteredItems = computed(() => {
-    const query = searchQuery.value.trim().toLowerCase()
-    if (!query) return items.value
+  const toggleSearch = (): void => {
+    isSearchOpen.value = !isSearchOpen.value
+  }
 
-    const tokens = query.split(/\s+/)
+  const executeSearch = (): void => {
+    const trimmedQuery = searchQuery.value.trim()
+    if (!trimmedQuery) return
 
-    return items.value.filter((item) =>
-      tokens.every((token) =>
-        options.keys.some((key) => {
-          const value = item[key]
-          if (value == null) return false
-          return String(value).toLowerCase().includes(token)
-        })
-      )
-    )
-  })
+    router.push({
+      path: searchRoute,
+      query: { q: trimmedQuery }
+    })
+
+    // Reset UI state after navigation
+    isSearchOpen.value = false
+  }
+
+  const clearSearch = (): void => {
+    searchQuery.value = ''
+  }
 
   return {
     searchQuery,
-    filteredItems
+    isSearchOpen,
+    toggleSearch,
+    executeSearch,
+    clearSearch
   }
 }

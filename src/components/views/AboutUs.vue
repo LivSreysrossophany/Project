@@ -1,18 +1,3 @@
-<!-- <template>
-    <div>
-
-    </div>
-</template>
-
-<script setup lang="ts">
-
-</script>
-
-<style lang="scss" scoped>
-
-</style> -->
-
-
 
 <template>
   <div class="space-y-16 pb-20">
