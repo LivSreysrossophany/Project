@@ -4,6 +4,7 @@
     <header class="relative min-h-[600px] w-full bg-slate-900 text-white overflow-hidden flex flex-col justify-between py-12 px-4 sm:px-8 lg:px-16">
       <!-- Background Image Overlay -->
       <div class="absolute inset-0 z-0">
+        
         <img 
           src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=2000" 
           alt="School Architecture" 
@@ -37,10 +38,7 @@
             <input type="text" v-model="searchQuery" placeholder="Search by School Name..." class="w-full focus:outline-none text-sm bg-transparent" />
           </div>
 
-          <div class="flex-1 flex items-center px-4 py-2">
-            <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <input type="text" v-model="locationQuery" placeholder="City, State, or Zip Code" class="w-full focus:outline-none text-sm bg-transparent" />
-          </div>
+
 
           <RouterLink 
             :to="{ name: 'schools-search', query: { q: searchQuery, location: locationQuery } }" 
@@ -116,8 +114,11 @@
         <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div v-for="(feature, idx) in features" :key="idx" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition flex flex-col justify-between">
             <div>
+              <!-- Render Dynamic SVG Icons from Data -->
               <div :class="feature.bgIcon" class="w-10 h-10 rounded-xl flex items-center justify-center mb-6">
-                <component :is="feature.icon" class="w-5 h-5" :class="feature.iconColor" />
+                <svg class="w-5 h-5" :class="feature.iconColor" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path v-for="(path, index) in feature.iconPaths" :key="index" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="path" />
+                </svg>
               </div>
               <h3 class="font-bold text-slate-900 text-base mb-2">{{ feature.title }}</h3>
               <p class="text-xs text-slate-500 leading-relaxed">{{ feature.description }}</p>
@@ -305,115 +306,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, h } from 'vue'
+import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
-// Types
-interface Feature {
-  title: string
-  description: string
-  bgIcon: string
-  iconColor: string
-  icon: ReturnType<typeof h>
-}
-
-interface School {
-  id: number
-  name: string
-  category: string
-  rating: number
-  tuition: string
-  students: string
-  tags: string[]
-  image: string
-}
+// Updated import to point to Data.ts instead of homeData.ts
+import { filterTabsData, featuresData, schoolsData } from '../data/Data'
 
 // Search Inputs State
 const searchQuery = ref<string>('')
 const locationQuery = ref<string>('')
 const activeTab = ref<string>('All Types')
 
-const filterTabs = ['All Types', 'Private', 'Charter', 'Boarding']
-
-// Icon Helper Components (Inline SVG Renders)
-const AnalyticsIcon = h('svg', { fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' }, [
-  h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6' })
-])
-const ReviewIcon = h('svg', { fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' }, [
-  h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' })
-])
-const MapIcon = h('svg', { fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' }, [
-  h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' })
-])
-const GlobalIcon = h('svg', { fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' }, [
-  h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9' })
-])
-
-// Features Data
-const features: Feature[] = [
-  {
-    title: 'Real-time Stats',
-    description: 'Up-to-the-minute data on teacher-to-student ratios and test scores.',
-    bgIcon: 'bg-orange-100',
-    iconColor: 'text-orange-600',
-    icon: AnalyticsIcon
-  },
-  {
-    title: 'Verified Reviews',
-    description: 'Every review is hand-checked to ensure genuine inputs from parents & students.',
-    bgIcon: 'bg-teal-100',
-    iconColor: 'text-teal-600',
-    icon: ReviewIcon
-  },
-  {
-    title: 'Local Insights',
-    description: 'Understand the neighborhood safety, transit, and housing around schools.',
-    bgIcon: 'bg-cyan-100',
-    iconColor: 'text-cyan-600',
-    icon: MapIcon
-  },
-  {
-    title: 'Global Curriculum',
-    description: 'Compare IB, A-Levels, AP, and local systems side by side easily.',
-    bgIcon: 'bg-amber-100',
-    iconColor: 'text-amber-600',
-    icon: GlobalIcon
-  }
-]
-
-// Sample Schools Data
-const schools = ref<School[]>([
-  {
-    id: 1,
-    name: 'Summit Ridge International',
-    category: 'Grades K-12',
-    rating: 4.9,
-    tuition: '$18,500/yr',
-    students: '1,250 Students',
-    tags: ['IB World School', 'STEM Focused', 'Boarding Available'],
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    id: 2,
-    name: 'Heritage Oak Science & Technology',
-    category: 'Public Charter',
-    rating: 4.8,
-    tuition: 'Tuition Free',
-    students: '850 Students',
-    tags: ['Robotics', 'Public Charter', 'AP Honors'],
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    id: 3,
-    name: 'Northbrook Montessori Primary',
-    category: 'Private',
-    rating: 4.7,
-    tuition: '$12,200/yr',
-    students: '420 Students',
-    tags: ['Montessori', 'Forest School', 'Music Program'],
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=800'
-  }
-])
+// Import static data directly from the data file
+const filterTabs = filterTabsData
+const features = featuresData
+const schools = ref(schoolsData)
 
 // Computed property to filter schools based on active tab
 const filteredSchools = computed(() => {
