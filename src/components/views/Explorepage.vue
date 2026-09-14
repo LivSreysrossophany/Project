@@ -1,13 +1,218 @@
 <template>
-    <div>
-<h1>jsgdfjhfakdhkshakjfhdsa</h1>
-    </div>
+  <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 pb-16">
+    
+    <!-- HERO SECTION -->
+    <section class="bg-white pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
+      <div class="max-w-7xl mx-auto text-center">
+        <!-- Badge -->
+        <span class="inline-block bg-[#E0F4F4] text-[#009FB7] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
+          Discover Potential
+        </span>
+        
+        <!-- Heading -->
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#111827] tracking-tight mb-4">
+          Explore Top Academic Institutions
+        </h1>
+        
+        <p class="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+          Join over 1.2M families discovering public and private schools that align with their students' unique talents and academic goals.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-2 flex flex-col md:flex-row items-center gap-2">
+          
+          <!-- Keyword Input -->
+          <div class="flex-1 flex items-center w-full px-4 py-2 md:border-r border-slate-200">
+            <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input 
+              type="text" 
+              placeholder="School name, curriculum or keyword..." 
+              class="w-full bg-transparent border-none focus:ring-0 text-sm text-slate-800 placeholder-slate-400 pl-3 focus:outline-none"
+            />
+          </div>
+          
+          <!-- Search Button -->
+          <button class="w-full md:w-auto bg-[#009FB7] hover:bg-[#00899e] text-white font-semibold py-3 px-8 rounded-xl md:rounded-full transition-colors shrink-0">
+            Search Schools
+          </button>
+        </div>
+
+        <!-- Recent Searches -->
+        <div class="flex items-center justify-center gap-3 mt-6 text-xs text-slate-500 flex-wrap">
+          <span class="font-bold text-slate-400 uppercase tracking-wider text-[10px]">Recent Searches:</span>
+          <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">STEM High Schools</router-link>
+          <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+          <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">95112</router-link>
+          <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+          <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Austin Montessori</router-link>
+          <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+          <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">IB Programs</router-link>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      
+      <!-- Results Header -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
+        
+        <!-- Results Count & Active Filters -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+          <div>
+            <!-- Dynamically update count based on filtered array -->
+            <h2 class="text-xl font-extrabold text-[#111827]">{{ filteredSchools.length }} Results Found</h2>
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1">Showing 1-{{ filteredSchools.length }} of {{ filteredSchools.length }} Schools</p>
+          </div>
+
+          <!-- Category Filter Buttons -->
+          <div class="flex flex-wrap gap-2">
+            <button 
+              v-for="tab in filterTabs" 
+              :key="tab"
+              @click="activeTab = tab"
+              :class="[
+                'px-4 py-1.5 rounded-full text-xs font-medium transition',
+                activeTab === tab ? 'bg-teal-700 text-white' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+              ]"
+            >
+              {{ tab }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schools Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Loop through FILTERED schools data instead of all schools -->
+        <div 
+          v-for="school in filteredSchools" 
+          :key="school.id"
+          class="bg-white rounded-[20px] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col overflow-hidden"
+        >
+          <!-- Card Image Header -->
+          <div class="relative h-44 overflow-hidden bg-slate-100">
+            <img :src="school.image" :alt="school.name" class="w-full h-full object-cover" />
+            
+            <!-- Type / Category Tag -->
+            <span class="absolute top-3 left-3 bg-[#009FB7] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm">
+              {{ school.category }}
+            </span>
+          </div>
+
+          <!-- Card Body -->
+          <div class="p-5 flex-1 flex flex-col">
+            <!-- Title & Rating -->
+            <div class="flex justify-between items-start mb-1">
+              <h3 class="text-base font-extrabold text-[#111827] truncate pr-2">{{ school.name }}</h3>
+              <div class="flex items-center gap-1 shrink-0">
+                <svg class="w-3.5 h-3.5 text-orange-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <span class="text-xs font-bold text-slate-700">{{ school.rating }}</span>
+              </div>
+            </div>
+
+            <!-- Student Count -->
+            <div class="flex justify-between items-center mb-5 text-[11px] text-slate-500">
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                {{ school.students }}
+              </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-4 mb-5 border-y border-slate-100 py-3">
+              <div>
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Annual Tuition</p>
+                <p class="text-xs font-bold text-slate-800">{{ school.tuition }}</p>
+              </div>
+              <div class="text-right">
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Category</p>
+                <p class="text-xs font-bold text-slate-800">{{ school.category }}</p>
+              </div>
+            </div>
+
+            <!-- Focus Tags -->
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span 
+                v-for="(tag, index) in school.tags" 
+                :key="index"
+                class="bg-slate-50 text-slate-600 border border-slate-200 text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-md"
+              >
+                {{ tag }}
+              </span>
+            </div>
+
+            <!-- Action Button -->
+            <router-link :to="`/school/${school.id}`" class="mt-auto w-full bg-[#009FB7] hover:bg-[#00899e] text-white text-xs font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+              View Detailed Profile
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+            </router-link>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Zero State if filters match nothing -->
+      <div v-if="filteredSchools.length === 0" class="text-center py-12">
+        <p class="text-slate-500 font-medium">No schools found for "{{ activeTab }}".</p>
+        <button @click="activeTab = 'All Types'" class="mt-4 text-[#009FB7] hover:underline font-bold text-sm">Clear Filters</button>
+      </div>
+
+      <!-- Pagination -->
+      <div v-if="filteredSchools.length > 0" class="mt-12 pt-6 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500 text-center md:text-left">
+          <span class="font-bold text-slate-700">Showing results 1 - {{ filteredSchools.length }}</span><br/>
+          From a total of {{ filteredSchools.length }} verified schools near you
+        </p>
+        
+        <div class="flex items-center gap-1 sm:gap-2">
+          <button class="px-2 sm:px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-slate-700 transition-colors flex items-center gap-1 disabled:opacity-50" disabled>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            <span class="hidden sm:inline">Previous</span>
+          </button>
+          
+          <button class="w-8 h-8 rounded-lg bg-[#009FB7] text-white text-xs font-bold flex items-center justify-center shadow-sm">1</button>
+          
+          <button class="px-2 sm:px-3 py-1.5 text-xs font-bold text-[#009FB7] hover:text-[#00899e] transition-colors flex items-center gap-1">
+            <span class="hidden sm:inline">Next</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+
+    </section>
+  </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { RouterLink } from 'vue-router'
+import { schoolsData, filterTabsData, type School } from '../data/Data' 
 
+// State variables
+const schools = ref<School[]>(schoolsData)
+const filterTabs = ref<string[]>(filterTabsData)
+
+// Set the active tab to the first item ('All Types') by default
+const activeTab = ref<string>(filterTabsData[0])
+
+// Computed property to dynamically filter schools based on the active tab
+const filteredSchools = computed(() => {
+  if (activeTab.value === 'All Types') {
+    return schools.value
+  }
+  
+  // Filter by matching the tab name against the category OR tags
+  return schools.value.filter(school => {
+    const matchesCategory = school.category.toLowerCase().includes(activeTab.value.toLowerCase())
+    const matchesTags = school.tags.some(tag => tag.toLowerCase().includes(activeTab.value.toLowerCase()))
+    
+    return matchesCategory || matchesTags
+  })
+})
 </script>
-
-<style lang="scss" scoped>
-
-</style>

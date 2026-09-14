@@ -97,7 +97,7 @@
                 <input
                   v-model="fullName"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="John son"
                   class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                 />
               </div>
@@ -226,7 +226,7 @@ const handleSignup = (): void => {
     // Redirect to login page after 1.5 seconds
     setTimeout(() => {
       router.push('/login')
-    }, 1500)
+    }, 1000)
   }
 }
 </script>
