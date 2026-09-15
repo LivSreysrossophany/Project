@@ -213,20 +213,22 @@ export const schoolsData: School[] = [
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0J1cG149W-7hpEQHCPzKp3Lov3kJrCh0KIrHzqYgnAA&s=10',
   },
   {
-    id: 14,
-    name: 'Royal University of Law and Economics (RULE)',
-    category: 'Public  University',
-    rating: 5,
-    tuition: '$500 - $1,500/yr',
-    students: '1,500+ Students',
-    filters: [ 'Law',
-    'Economics',
+  id: 14,
+  name: 'Paññāsāstra University of Cambodia (PUC)',
+  category: 'Private University',
+  rating: 4,
+  tuition: '$1,000 - $2,500/yr',
+  students: '3,000+ Students',
+  filters: [
     'Business',
-    'Public University',
-    'Finance',
-    'Management'],
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxOxMnUt1DwaLyMEp6-j66Tm1j-_kYmihpy3Ud-FbOzA&s=10'
-  },
+    'Economics',
+    'Law',
+    'Education',
+    'Private University',
+    'Information Technology'
+  ],
+  image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpyqM3rjLoGhmapBwfHtW7awqb541hcLDuMJjeghvhqA&s=10'
+},
     
     {
     id: 15,
