@@ -22,13 +22,13 @@
 
         <!-- Main Title -->
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-2xl leading-tight mb-4">
-          The Smartest Way <br />
+          Smart Scholarship Finder & Assistant <br />
           <span class="text-orange-500">To Find Their Future.</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-base sm:text-lg text-slate-300 max-w-xl mb-8 leading-relaxed">
-          Unlock potential by discovering schools that match your child's unique learning style. Data-driven insights for parents who want the absolute best.
+          Find and apply for top scholarships effortlessly. Our smart assistant turns complex eligibility rules into clear, actionable paths to fund your education.
         </p>
 
         <!-- Search Bar -->
@@ -291,19 +291,34 @@
       </div>
     </section>
 
-    <!-- FOOTER PARTNERS / ACCREDITATIONS -->
+        <!-- FOOTER PARTNERS / ACCREDITATIONS --> 
     <footer class="border-t border-slate-200 py-8 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
-        <div class="flex flex-wrap items-center justify-around gap-6 opacity-60 text-xs font-bold text-slate-500 uppercase tracking-widest">
-          <div class="flex items-center gap-2"><span class="text-base">🏛</span> Council</div>
-          <div class="flex items-center gap-2"><span class="text-base">🎓</span> Scholar+</div>
-          <div class="flex items-center gap-2"><span class="text-base">📊</span> DataFlow</div>
-          <div class="flex items-center gap-2"><span class="text-base">🛡</span> Edu-Trust</div>
-        </div>
+          <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+            <div class="flex flex-wrap items-center justify-around gap-6 opacity-60 text-xs font-bold text-slate-500 uppercase tracking-widest">
+            <div class="flex items-center gap-2">
+      <i class="bi bi-bank"></i>
+      Council
+    </div>
+
+    <div class="flex items-center gap-2">
+      <i class="bi bi-book"></i>
+      Scholar+
+    </div>
+
+    <div class="flex items-center gap-2">
+      <i class="bi bi-search"></i>
+      EDU-CHECK
+    </div>
+
+    <div class="flex items-center gap-2">
+      <i class="bi bi-shield-check"></i>
+      Trust-Edu
+    </div>
+            </div>
+          </div>
+        </footer> 
       </div>
-    </footer>
-  </div>
-</template>
+    </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'

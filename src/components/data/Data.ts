@@ -15,7 +15,7 @@ export interface School {
   rating: number
   tuition: string
   students: string
-  tags: string[]
+  filters: string[]
   image: string
 }
 // In this line can change a filter
@@ -63,8 +63,8 @@ export const schoolsData: School[] = [
     rating: 4.9,
     tuition: '$18,500/yr',
     students: '1,250 Students',
-    tags: ['IB World School', 'STEM Focused', 'Public Available'],
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800'
+    filters: ['IB World School', 'STEM Focused', 'Public Available'],
+    image: 'https://res.klook.com/image/upload/w_750,c_fill,q_85/v1710142781/hotel/mh3mkp4wcderwiytmwfb.jpg'
   },
   {
     id: 2,
@@ -73,37 +73,298 @@ export const schoolsData: School[] = [
     rating: 4.8,
     tuition: 'Tuition Free',
     students: '850 Students',
-    tags: ['Robotics', 'Public Charter', 'AP Honors'],
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800'
+    filters: ['Robotics', 'Public Charter', 'AP Honors'],
+    image: 'https://d25wby5c7p9100.cloudfront.net/public/uploads/5efe41b55010fe111dcedc326e59a5ab/images/files/1c8c2c773e6ab4d17e3bb855e6ac05b9/large/emilykeeney.spring.heritageoak-359.jpg?1752556015'
   },
   {
-    id: 3,
-    name: 'Northbrook Montessori Primary',
-    category: 'Private',
-    rating: 4.7,
-    tuition: '$12,200/yr',
-    students: '420 Students',
-    tags: ['Montessori', 'Forest School', 'Music Program'],
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=800'
-  },
+  id: 27,
+  name: 'Paragon International University',
+  category: 'Private University',
+  rating: 5,
+  tuition: '$2,000 - $5,000/yr',
+  students: '2,000+ Students',
+  filters: ['Engineering', 'STEM', 'Business', 'IT', 'Private University', 'Research'],
+  image: 'https://sustainability-ai.org/paragon_university.jpg'
+},
   {
     id: 4,
-    name: 'Heritage Oak Science & Technology',
-    category: 'Public Charter',
-    rating: 4.8,
-    tuition: 'Tuition Free',
-    students: '850 Students',
-    tags: ['Robotics', 'Public Charter', 'AP Honors'],
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800'
+    name: 'Norton University',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$700 - $2,000/yr',
+    students: '5,000+ Students',
+    filters: ['Engineering', 'IT', 'Business', 'Private University', 'Architecture'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZLrlqUbpRVC_iNl6uqN9-d18lg1G1jDP9A7jVV0cAHg&s=10'
+  },
+{
+    id: 5,
+    name: 'Cambodia University of Technology and Science (CamTech)',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$1,500 - $3,000/yr',
+    students: '1,000+ Students',
+    filters: ['Engineering', 'STEM', 'Technology', 'Private University', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXgjvVirx1MMLBOTbX2FiAuJgsJRS9O1Imw5vxQUaUtw&s=10'
   },
   {
-    id: 5,
-    name: 'Heritage Oak Science & Technology',
-    category: 'Public Charter',
-    rating: 4.8,
-    tuition: 'Tuition Free',
-    students: '850 Students',
-    tags: ['Robotics', 'Public Charter', 'AP Honors'],
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800'
+    id: 6,
+    name: 'Institute of Technology of Cambodia',
+    category: 'Public Institute',
+    rating: 5,
+    tuition: '$650 - $2500/yr',
+    students: '1800+ Students',
+    filters: ['Engineering', 'STEM', 'Public University', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsnuMu3rnOGpWTfWhEdzcdFEKBD4NVQC_hQwhU-iN7AA&s=10'
+  },
+
+  {
+    id: 7,
+    name: 'Cambodia Academy of Digital Technology (CADT)',
+    category: 'Public Institute',
+    rating: 5,
+    tuition: '$1,250 - $2,500/yr',
+    students: '150+ new students/year',
+    filters: ['Engineering', 'STEM', 'Public Institute', 'Research', 'Digital Technology'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbtqm4TRY_v5OyED9afhxyNTKdlkN_hi9J0JWhD5yN7A&s=10'
+  },
+  {
+    id: 8,
+    name: 'ACLEDA University of Business (AUB)',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$1,000 - $2,500/yr',
+    students: '10,700+ Students',
+    filters: ['Business',
+    'Finance',
+    'STEM',
+    'Private University',
+    'Research',
+    'Technology'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJI3c1u2EPvJo087SabpeipPIMGoVq6jHgJQd0DaZofg&s=10'
+  },
+    {
+    id: 9,
+    name: 'Institute of Technology of Cambodia',
+    category: 'Public Institute',
+    rating: 5,
+    tuition: '$650 - $2500/yr',
+    students: '1800+ Students',
+    filters: ['Engineering', 'STEM', 'Public University', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGDxPJQIC8VeEFjMoKD665NNMHgsJAnJmLGh1k7E0qdw&s=10'
+  },
+  {
+    id: 10,
+    name: 'Royal University of Phnom Penh (RUPP)',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$250 - $450/yr',
+    students: '30,000+ Students',
+    filters: ['Engineering',
+    'STEM',
+    'Public University',
+    'Research',
+    'Humanities',
+    'Social Sciences'],
+    image: 'https://fed.rupp.edu.kh/images/slider/slide2.jpg'
+  },
+  {
+    id: 11,
+    name: 'National Polytechnic Institute of Cambodia (NPIC)',
+    category: 'Public Institute',
+    rating: 5,
+    tuition: '$400 - $800/yr',
+    students: '1,000+ Students',
+    filters: ['Engineering',
+    'STEM',
+    'Public Institute',
+    'Technical',
+    'Research',
+    'Vocational'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREHbv11LFJCpNp-jviCbws6hPrCe4E-Sdle3yaWGzkMw&s=10'
+  },
+  {
+    id: 12,
+    name: 'National University of Management (NUM)',
+    category: 'Public  University',
+    rating: 5,
+    tuition: '$500 - $1,500/yr',
+    students: '1,000+ Students',
+    filters: [ 'Business',
+    'Finance',
+    'Economics',
+    'Public University',
+    'Management',
+    'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtARqDAuu4twKDzp4Y6NNc0ZALoElrzRf9I5PVFQ0TAA&s=10'
+  },
+    {
+    id: 13,
+    name: 'BELTEI International University (BIU)',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$500 - $1,500/yr',
+    students: '1,000+ Students',
+    filters: ['Business',
+    'Engineering',
+    'STEM',
+    'Private University',
+    'IT',
+    'Languages'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0J1cG149W-7hpEQHCPzKp3Lov3kJrCh0KIrHzqYgnAA&s=10',
+  },
+  {
+    id: 14,
+    name: 'Royal University of Law and Economics (RULE)',
+    category: 'Public  University',
+    rating: 5,
+    tuition: '$500 - $1,500/yr',
+    students: '1,500+ Students',
+    filters: [ 'Law',
+    'Economics',
+    'Business',
+    'Public University',
+    'Finance',
+    'Management'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxOxMnUt1DwaLyMEp6-j66Tm1j-_kYmihpy3Ud-FbOzA&s=10'
+  },
+    
+    {
+    id: 15,
+    name: 'Royal University of Law and Economics (RULE)',
+    category: 'Public  University',
+    rating: 5,
+    tuition: '$500 - $1,500/yr',
+    students: '1,500+ Students',
+    filters: [ 'Law',
+    'Economics',
+    'Business',
+    'Public University',
+    'Finance',
+    'Management'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxOxMnUt1DwaLyMEp6-j66Tm1j-_kYmihpy3Ud-FbOzA&s=10'
+  },
+  {
+    id: 16,
+    name: 'Human Resource University (HRU)',
+    category: 'Private  University',
+    rating: 5,
+    tuition: '$400 - $1,200/yr',
+    students: '5,000+ Students',
+    filters: ['Business',
+    'Management',
+    'IT',
+    'Private University',
+    'Accounting',
+    'Finance'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg9GmuRwQbOW0Y_n4PW7TpBH_0LkAEOAsHWiLLulzEhg&s=10'
+  },
+  {
+    id: 17,
+    name: 'Harvard University',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$59,000 - $60,000/yr',
+    students: '23,000+ Students',
+    filters: ['Business', 'Engineering', 'STEM', 'Research'],
+    image: 'https://oscg.b-cdn.net/summercourses/assets/c2/c2ec23eacbd84ab235c24500f29e70e9ef6723d3bdedff732fc0671ed660cf10.jpg'
+  },
+  {
+    id: 18,
+    name: 'MIT',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$62,000 - $65,000/yr',
+    students: '11,000+ Students',
+    filters: ['Engineering', 'STEM', 'Computer Science', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCISUuDBQ344RoRtFViJIilo_V0pUdVwq7MUPQOl1-w&s=10'
+  },
+  {
+    id: 19,
+    name: 'Stanford University',
+    category: 'Private University',
+    rating: 5,
+    tuition: '$60,000 - $65,000/yr',
+    students: '17,000+ Students',
+    filters: ['Engineering', 'STEM', 'Business', 'Research'],
+    image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b'
+  },
+  {
+    id: 20,
+    name: 'University of Oxford',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$35,000 - $60,000/yr',
+    students: '26,000+ Students',
+    filters: ['Humanities', 'STEM', 'Business', 'Research'],
+    image: 'https://dynamic-media.tacdn.com/media/photo-o/31/d2/7e/23/caption.jpg?w=700&h=500&s=1'
+  },
+  {
+    id: 21,
+    name: 'University of Cambridge',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$35,000 - $65,000/yr',
+    students: '24,000+ Students',
+    filters: ['Engineering', 'STEM', 'Humanities', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5GbrnmUKPRvr7TX0YuwAol124wMbRihaus02yw54Zxv_k0r6iROZfvpRg&s=10'
+  },
+  {
+    id: 22,
+    name: 'University of Toronto',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$30,000 - $55,000/yr',
+    students: '97,000+ Students',
+    filters: ['Engineering', 'STEM', 'Business', 'Research'],
+    image: 'https://d3d0lqu00lnqvz.cloudfront.net/media/media/UofT_cmh2315fl.jpg'
+  },
+  {
+    id: 23,
+    name: 'University of Melbourne',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$25,000 - $50,000/yr',
+    students: '53,000+ Students',
+    filters: ['Engineering', 'STEM', 'Business', 'Research'],
+    image: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952'
+  },
+  {
+    id: 24,
+    name: 'National University of Singapore',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$20,000 - $40,000/yr',
+    students: '40,000+ Students',
+    filters: ['Engineering', 'STEM', 'Computer Science', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-8QLZCtnCIvW3TfCgzeJ1mRsNpCR1sda6WBKTksPzg&s=10'
+  },
+  {
+    id: 25,
+    name: 'University of Tokyo',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$4,000 - $6,000/yr',
+    students: '28,000+ Students',
+    filters: ['Engineering', 'STEM', 'Technology', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRmtbDHIHQQgfuFsulJN9FsbcteEiONZWPgEDN_VLTGw&s=10'
+  },
+  {
+    id: 26,
+    name: 'Tsinghua University',
+    category: 'Public University',
+    rating: 5,
+    tuition: '$4,000 - $8,000/yr',
+    students: '50,000+ Students',
+    filters: ['Engineering', 'STEM', 'Technology', 'Research'],
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ9rhc2DNTsggTxkmFbBkqvpWENEzuPQW_7xq0pfMX1g&s=10'
   }
+  
+    
+
+    
+
+
 ]
+
+
+

@@ -24,7 +24,7 @@
         </h1>
 
         <p class="text-slate-300 text-xs md:text-sm max-w-md leading-relaxed pt-2">
-          EduFind was born from a simple belief: every child deserves a school that inspires them, and every parent deserves the data to find it[cite: 3].
+            Smart Scholarship Finder was born from a simple belief: every student deserves an education they can afford, and every family deserves the data to fund it.
         </p>
 
         <div class="pt-2">
