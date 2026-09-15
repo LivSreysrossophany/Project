@@ -8,8 +8,8 @@
         <div class="space-y-3">
           <h3 class="text-white font-bold text-base tracking-wide">Contact Us</h3>
           <address class="not-italic text-xs text-slate-400 space-y-1.5 leading-relaxed">
-            <p>123 Academy Avenue, Learning City, ED 54321</p>
-            <p><a href="tel:+15551234567" class="hover:text-white transition-colors duration-200">+1 (555) 123-4567</a></p>
+            <p>Smart Technology Academy , Phnom Penh City, ED 16888</p>
+            <p><a href="tel:+15551234567" class="hover:text-white transition-colors duration-200">+(855) 81 248 587</a></p>
             <p>
               <a href="mailto:support@edufind.example" class="text-[#009FB7] hover:underline break-all">
                 support@edufind.example
@@ -35,9 +35,9 @@
           <h3 class="text-white font-bold text-base tracking-wide">Resources</h3>
           <ul class="space-y-2 text-xs text-slate-400">
             <!-- Updated to match router path: /Explore -->
-            <li><RouterLink to="/Explore" class="hover:text-white transition-colors duration-200 block py-0.5">School Directory</RouterLink></li>
-            <li><RouterLink to="/Explore" class="hover:text-white transition-colors duration-200 block py-0.5">Admission Guides</RouterLink></li>
-            <li><RouterLink to="/About us" class="hover:text-white transition-colors duration-200 block py-0.5">Parent Resources</RouterLink></li>
+            <li><RouterLink to="/Explore" class="hover:text-white transition-colors duration-200 block py-0.5">Scholarship Directory</RouterLink></li>
+            <li><RouterLink to="/Explore" class="hover:text-white transition-colors duration-200 block py-0.5">Application Guides</RouterLink></li>
+            <li><RouterLink to="/About us" class="hover:text-white transition-colors duration-200 block py-0.5">Eligibility Checker</RouterLink></li>
             <li><RouterLink to="/About us" class="hover:text-white transition-colors duration-200 block py-0.5">FAQ</RouterLink></li>
           </ul>
         </div>
@@ -57,7 +57,7 @@
       <!-- Bottom Bar -->
       <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-xs text-slate-500 gap-3 sm:gap-0">
         <p>© 2026 EduFind. All rights reserved.</p>
-        <p>Empowering Families Through Educational Clarity.</p>
+        <p>Find and Apply for Scholarships with Confidence</p>
       </div>
     </div>
   </footer>

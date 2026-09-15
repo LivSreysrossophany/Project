@@ -17,7 +17,7 @@
         <!-- Badge -->
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wide uppercase mb-6 text-amber-400">
           <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          New: 2024-2025 Education Ranking
+          New: 2025-2026 Education Ranking
         </div>
 
         <!-- Main Title -->
@@ -35,7 +35,7 @@
         <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl flex flex-col md:flex-row gap-3 text-slate-700">
           <div class="flex-1 flex items-center px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200">
             <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" v-model="searchQuery" placeholder="Search by School Name..." class="w-full focus:outline-none text-sm bg-transparent" />
+            <input type="text" v-model="searchQuery" placeholder="Search by University Name..." class="w-full focus:outline-none text-sm bg-transparent" />
           </div>
 
 
@@ -44,7 +44,7 @@
             :to="{ name: 'schools-search', query: { q: searchQuery, location: locationQuery } }" 
             class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition duration-200 shrink-0"
           >
-            <span>Search Schools</span>
+            <span>Search University</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </RouterLink>
         </div>
@@ -60,7 +60,7 @@
             <div class="flex items-center text-amber-400 text-xs">
               ★ ★ ★ ★ ★ <span class="text-white font-bold ml-1.5 text-sm">4.9/5.0</span>
             </div>
-            <p class="text-xs text-slate-400">Trusted by 10,000+ parents nationwide</p>
+            <p class="text-xs text-slate-400">Trusted by 10,000+ students nationwide</p>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
             <span class="text-teal-600">Deep Academic Insight.</span>
           </h2>
           <p class="text-slate-600 text-sm leading-relaxed">
-            We aggregate millions of data points from official records, student test scores, and parent reviews to give you a 360° view of any institution.
+            We collect details from official database records, grade requirements, and past winner profiles to find the exact funding that fits you best.
           </p>
 
           <!-- Horizontal Mini Feature Cards -->
@@ -88,8 +88,8 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </div>
               <div>
-                <h4 class="font-bold text-sm text-slate-900">Personalized Matching</h4>
-                <p class="text-xs text-slate-500">Find schools based on your child's learning profile & budget.</p>
+                <h4 class="font-bold text-sm text-slate-900">Smart Matching</h4>
+                <p class="text-xs text-slate-500">Find scholarships based on your grades, major, and financial needs.</p>
               </div>
             </div>
 
@@ -98,8 +98,8 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
               </div>
               <div>
-                <h4 class="font-bold text-sm text-slate-900">Campus Tour & Events</h4>
-                <p class="text-xs text-slate-500">Directly schedule open houses and campus visits via our platform.</p>
+                <h4 class="font-bold text-sm text-slate-900">Application Tracker</h4>
+                <p class="text-xs text-slate-500">Track deadlines, organize your required essays, and manage applications in one place.</p>
               </div>
             </div>
           </div>
@@ -135,14 +135,14 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
           <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">
-            Elite Schools <span class="text-orange-500">Excellence Hub</span>
+            Top Scholarships <span class="text-orange-500">Opportunity Hub</span>
           </h2>
           <p class="text-xs text-slate-500 mt-1 max-w-lg">
-            Our curated top-tier institutions recognized for academic innovation, diversity, and superior facilities.
+            Verified grants and awards that give you real money for your education.
           </p>
         </div>
         <RouterLink to="/explore" class="text-xs font-bold text-slate-500 hover:text-slate-800 flex items-center gap-1 shrink-0">
-          View all listings &rarr;
+          View all scholarships &rarr;
         </RouterLink>
       </div>
 
@@ -217,19 +217,19 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div>
           <div class="text-3xl sm:text-4xl font-extrabold mb-1">45k+</div>
-          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">Verified Schools</div>
+          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">VERIFIED SCHOLARSHIPS</div>
         </div>
         <div>
           <div class="text-3xl sm:text-4xl font-extrabold mb-1">98%</div>
-          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">Parent Satisfaction</div>
+          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">STUDENT SUCCESS RATE</div>
         </div>
         <div>
           <div class="text-3xl sm:text-4xl font-extrabold mb-1">120+</div>
-          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">City Guides</div>
+          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">ACTIVE GRANTS</div>
         </div>
         <div>
           <div class="text-3xl sm:text-4xl font-extrabold mb-1">1.2m</div>
-          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">Annual Visitors</div>
+          <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">TOTAL FUNDING FOUND</div>
         </div>
       </div>
     </section>
@@ -248,26 +248,26 @@
             <span class="text-teal-400">to start?</span>
           </h2>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Our guided wizard helps matching options tailored for your child's profile in under 3 minutes.
+            Our quick finder matches you with top scholarships in under 3 minutes.
           </p>
 
           <ul class="space-y-2 text-xs text-slate-300">
             <li class="flex items-center gap-2">
               <span class="w-4 h-4 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-[10px] font-bold">✓</span>
-              Define your learning priorities
+              Enter your major and study level
             </li>
             <li class="flex items-center gap-2">
               <span class="w-4 h-4 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-[10px] font-bold">✓</span>
-              Set your commuting range & budget
+              Set your GPA and financial needs
             </li>
             <li class="flex items-center gap-2">
               <span class="w-4 h-4 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center text-[10px] font-bold">✓</span>
-              Receive a curated Match Report
+              Get your custom scholarship list
             </li>
           </ul>
 
           <RouterLink to="/explore" class="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-6 py-3.5 rounded-xl shadow-lg hover:shadow-orange-500/30 transition duration-200 inline-block">
-            Launch Discovery Tool
+            Find My Scholarships
           </RouterLink>
         </div>
 
@@ -277,13 +277,13 @@
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
           </div>
           <p class="text-xs text-slate-200 leading-relaxed italic">
-            "We found the ideal STEM school for our daughter within two weeks using this platform!"
+            "I found and won a $5,000 scholarship for my degree in less than a month!"
           </p>
           <div class="flex items-center gap-3 pt-2">
             <img class="w-8 h-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" alt="Sarah" />
             <div>
               <div class="text-xs font-bold">Sarah Williams</div>
-              <div class="text-[10px] text-slate-400">Parent of 2</div>
+              <div class="text-[10px] text-slate-400">College Student</div>
             </div>
           </div>
         </div>
