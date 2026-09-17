@@ -6,7 +6,7 @@ import { schoolsData, type School } from '../components/data/Data'
 export interface SearchOptions {
   searchRoute?: string
 }
-// in this line it can change router 
+// in this line it can change router
 export function useSearch(options: SearchOptions = {}) {
   const { searchRoute = '/explore' } = options // Set default to your explore page
   

@@ -14,12 +14,14 @@
       </router-link>
 
       <!-- Desktop Center Navigation -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 shrink-0 ps-20">
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 shrink-0 ">
         <router-link to="/" class="hover:text-slate-900 transition-colors">Home</router-link>
         <router-link to="/explore" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50 block">
           <span>Explore</span>
         </router-link>
         <router-link to="/about-us" class="hover:text-slate-900 transition-colors">About Us</router-link>
+        <!-- NEW: Contact Link for Desktop -->
+        <router-link to="/contact" class="hover:text-slate-900 transition-colors">Contact</router-link>
       </nav>
 
       <!-- Desktop Right Section -->
@@ -70,6 +72,8 @@
           <span>Explore</span>
         </router-link>
         <router-link to="/about-us" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50">About Us</router-link>
+        <!-- NEW: Contact Link for Mobile -->
+        <router-link to="contact" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50">Contact</router-link>
       </nav>
 
       <!-- Mobile Action Buttons -->

@@ -1,9 +1,402 @@
 <template>
-    <div>
-
+  <div class="min-h-screen bg-[#F4F8FA] font-sans text-slate-800 pb-20">
+    <!-- Loading State -->
+    <div v-if="isLoading" class="min-h-screen flex items-center justify-center">
+      <svg
+        class="w-10 h-10 animate-spin text-[#009FB7]"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          class="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+        ></circle>
+        <path
+          class="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
     </div>
+
+    <!-- Error / Not Found State -->
+    <div
+      v-else-if="!school"
+      class="min-h-screen flex flex-col items-center justify-center px-4"
+    >
+      <svg
+        class="w-16 h-16 text-slate-300 mb-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <h2 class="text-2xl font-bold text-slate-800 mb-2">School Not Found</h2>
+      <p class="text-slate-500 mb-6">
+        We couldn't find the details for this institution.
+      </p>
+      <button
+        @click="goBack"
+        class="bg-[#009FB7] hover:bg-[#00899e] text-white px-6 py-2 rounded-xl font-bold transition-colors"
+      >
+        Back to Explore
+      </button>
+    </div>
+
+    <!-- Success State: School Details -->
+    <div v-else>
+      <!-- Hero Image Cover -->
+      <div class="w-full h-[300px] sm:h-[400px] relative bg-slate-900">
+        <img
+          :src="school.image"
+          :alt="school.name"
+          class="w-full h-full object-cover opacity-60"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"
+        ></div>
+
+        <!-- Back Button (Floating over image) -->
+        <button
+          @click="goBack"
+          class="absolute top-6 left-4 sm:left-8 bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-slate-900 px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Results
+        </button>
+      </div>
+
+      <!-- Main Content Container -->
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10">
+        <!-- Header Card -->
+        <div
+          class="bg-white rounded-3xl shadow-xl shadow-slate-200/40 p-6 sm:p-10 mb-8 border border-slate-100"
+        >
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+          >
+            <div>
+              <span
+                class="inline-block bg-[#009FB7] text-white text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-wider mb-3"
+              >
+                {{ school.category }}
+              </span>
+              <h1
+                class="text-3xl sm:text-4xl font-extrabold text-[#111827] mb-2"
+              >
+                {{ school.name }}
+              </h1>
+              <div
+                class="flex flex-wrap items-center gap-4 text-xs font-medium text-slate-500"
+              >
+                <span
+                  class="flex items-center gap-1 text-amber-500 font-bold bg-amber-50 px-2 py-1 rounded-md"
+                >
+                  ★ {{ school.rating }} / 5.0
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                  {{ school.students }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-3 w-full md:w-auto shrink-0">
+              <button
+                @click="toggleSave"
+                :class="
+                  isSaved
+                    ? 'bg-red-50 text-red-500 border-red-200'
+                    : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                "
+                class="flex-1 md:flex-none flex items-center justify-center gap-2 border px-6 py-3 rounded-xl font-bold text-xs transition-colors shadow-sm"
+              >
+                <svg
+                  class="w-4 h-4"
+                  :fill="isSaved ? 'currentColor' : 'none'"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+                {{ isSaved ? "Saved" : "Save" }}
+              </button>
+              <button
+                class="flex-1 md:flex-none bg-[#009FB7] hover:bg-[#00899e] text-white px-8 py-3 rounded-xl font-bold text-xs shadow-lg shadow-[#009FB7]/25 transition-colors"
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Left Column (Description & Tags) -->
+          <div class="lg:col-span-2 space-y-8">
+            <div
+              class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100"
+            >
+              <h3 class="text-xl font-extrabold text-slate-900 mb-4">
+                About {{ school.name }}
+              </h3>
+              <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                {{ school.name }} is recognized as a premier institution
+                dedicated to fostering academic excellence and personal growth.
+                With a state-of-the-art campus and a curriculum designed to
+                challenge and inspire, this school prepares students to thrive
+                in a rapidly evolving global landscape.
+              </p>
+
+              <h4 class="text-sm font-bold text-slate-900 mb-3">
+                Academic Highlights & Curriculum
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="tag in school.tags"
+                  :key="tag"
+                  class="bg-[#F4F8FA] text-[#009FB7] border border-[#E0F4F4] text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg"
+                >
+                  {{ tag }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Virtual Tour / Gallery Placeholder -->
+            <div
+              class="bg-slate-900 rounded-3xl p-8 text-center text-white relative overflow-hidden"
+            >
+              <div class="relative z-10">
+                <svg
+                  class="w-12 h-12 text-teal-400 mx-auto mb-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+                <h3 class="text-lg font-bold mb-2">Campus Virtual Tour</h3>
+                <p class="text-xs text-slate-400 mb-6">
+                  Experience the facilities and classrooms from your home.
+                </p>
+                <button
+                  class="bg-white text-slate-900 hover:bg-slate-100 px-6 py-2.5 rounded-xl text-xs font-bold transition-colors"
+                >
+                  Start Tour
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Quick Facts Sidebar) -->
+          <div class="lg:col-span-1 space-y-6">
+            <div
+              class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100"
+            >
+              <h3 class="font-extrabold text-slate-900 mb-6">Quick Facts</h3>
+
+              <ul class="space-y-5">
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      Annual Tuition
+                    </p>
+                    <p class="text-sm font-bold text-slate-800">
+                      {{ school.tuition }}
+                    </p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      Institution Type
+                    </p>
+                    <p class="text-sm font-bold text-slate-800">
+                      {{ school.category }}
+                    </p>
+                  </div>
+                </li>
+
+                <li class="flex items-start gap-3">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+                    >
+                      Enrollment
+                    </p>
+                    <p class="text-sm font-bold text-slate-800">
+                      {{ school.students }}
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Contact Box -->
+            <div
+              class="bg-teal-50 border border-teal-100 rounded-3xl p-6 text-center"
+            >
+              <h3 class="font-extrabold text-teal-900 mb-2">Need more info?</h3>
+              <p class="text-xs text-teal-700 mb-4">
+                Contact the admissions office directly to schedule a meeting.
+              </p>
+
+              <RouterLink
+                to="/contact"
+                class="block w-full bg-white text-teal-700 border border-teal-200 hover:bg-teal-100 px-4 py-2.5 rounded-xl font-bold text-xs transition-colors"
+              >
+                Contact Admissions
+              </RouterLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { schoolsData, type School } from "../data/Data"; // Ensure this path is correct for your project
 
+const route = useRoute();
+const router = useRouter();
+
+// Reactive state
+const school = ref<School | null>(null);
+const isLoading = ref<boolean>(true);
+const isSaved = ref<boolean>(false);
+
+// Fetch data when component loads
+onMounted(() => {
+  // Get the ID from the URL (e.g., /explore/3 -> ID is 3)
+  const routeId = Number(route.params.id);
+
+  // Find the specific school in your Data.ts array
+  const foundSchool = schoolsData.find((s) => s.id === routeId);
+
+  if (foundSchool) {
+    school.value = foundSchool;
+  }
+
+  // Fake a quick loading state so the page feels smooth
+  setTimeout(() => {
+    isLoading.value = false;
+  }, 400);
+});
+
+// Navigation
+const goBack = () => {
+  router.push("/explore"); // Sends user back to search page
+};
+
+// Interaction
+const toggleSave = () => {
+  isSaved.value = !isSaved.value;
+  if (isSaved.value) {
+    alert(`${school.value?.name} has been saved to your dashboard!`);
+  }
+};
 </script>

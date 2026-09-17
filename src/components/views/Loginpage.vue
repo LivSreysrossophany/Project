@@ -62,7 +62,10 @@
                 </button>
               </div>
             </div>
-
+            <div class="flex gap-1">
+              <p>Don't have account?</p>
+              <RouterLink to="signup" class="text-[#009FB7]"> Register now</RouterLink>
+            </div>
             <!-- Remember Me -->
             <div class="flex items-center">
               <input id="remember" v-model="rememberMe" type="checkbox" class="w-4 h-4 text-[#009FB7] border-slate-300 rounded focus:ring-[#009FB7] cursor-pointer" />

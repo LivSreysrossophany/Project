@@ -27,8 +27,8 @@
               </div>
             </div>
 
-            <!-- VIEW MODE: Shows when NOT editing -->
-            <div v-if="!isEditingProfile" class="w-full flex flex-col items-center text-center">
+            <!-- VIEW MODE: Shows when NOT editing profile and NOT changing password -->
+            <div v-if="!isEditingProfile && !isChangingPassword" class="w-full flex flex-col items-center text-center">
               <h2 class="text-xl font-bold text-slate-900">{{ userData.fullName }}</h2>
               <p class="text-xs font-medium text-slate-500 mt-1 flex items-center gap-1.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -54,8 +54,8 @@
               </button>
             </div>
 
-            <!-- EDIT MODE: Shows when editing -->
-            <div v-else class="w-full flex flex-col mt-2">
+            <!-- EDIT PROFILE MODE -->
+            <div v-else-if="isEditingProfile" class="w-full flex flex-col mt-2">
               <div class="mb-3">
                 <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Full Name</label>
                 <input 
@@ -86,23 +86,60 @@
               </div>
             </div>
 
+            <!-- CHANGE PASSWORD MODE -->
+            <div v-else-if="isChangingPassword" class="w-full flex flex-col mt-2">
+              <h3 class="text-sm font-bold text-slate-900 mb-4 text-center">Change Password</h3>
+              
+              <!-- Message Alert (Error or Success) -->
+              <div v-if="passwordMessage.text" :class="passwordMessage.type === 'error' ? 'bg-red-50 text-red-600' : 'bg-green-50 text-green-600'" class="px-3 py-2 rounded-lg text-[10px] font-bold mb-3 text-center">
+                {{ passwordMessage.text }}
+              </div>
+
+              <div class="mb-3">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Current Password</label>
+                <input v-model="passwordForm.current" type="password" placeholder="••••••••" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all" />
+              </div>
+              
+              <div class="mb-3">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">New Password</label>
+                <input v-model="passwordForm.new" type="password" placeholder="At least 8 characters" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all" />
+              </div>
+
+              <div class="mb-5">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Confirm New Password</label>
+                <input v-model="passwordForm.confirm" type="password" placeholder="Match new password" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all" />
+              </div>
+
+              <div class="flex gap-2 w-full">
+                <button @click="isChangingPassword = false" class="flex-1 bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 font-bold py-2 rounded-xl text-xs transition-colors">
+                  Cancel
+                </button>
+                <button @click="savePassword" class="flex-1 bg-[#009FB7] hover:bg-[#00899e] text-white font-bold py-2 rounded-xl text-xs transition-colors shadow-sm">
+                  Update
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <!-- Account Settings Menu -->
           <div class="bg-white rounded-3xl p-4 shadow-xl shadow-slate-200/40 border border-slate-100">
             <nav class="flex flex-col space-y-1">
-              <a href="#" class="flex items-center justify-between px-4 py-3 bg-[#F8FAFC] text-[#009FB7] rounded-xl text-sm font-semibold transition-colors">
+              <!-- Account Details (Returns to default view) -->
+              <button @click="isChangingPassword = false; isEditingProfile = false" :class="!isChangingPassword ? 'bg-[#F8FAFC] text-[#009FB7]' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-colors">
                 <div class="flex items-center gap-3">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                   Account Details
                 </div>
-              </a>
-              <a href="#" class="flex items-center justify-between px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-xl text-sm font-medium transition-colors">
+              </button>
+              
+              <!-- Security & Password (Opens password form) -->
+              <button @click="startPasswordChange" :class="isChangingPassword ? 'bg-[#F8FAFC] text-[#009FB7]' : 'text-slate-600 hover:bg-slate-50'" class="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors">
                 <div class="flex items-center gap-3">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                   Security & Password
                 </div>
-              </a>
+              </button>
             </nav>
           </div>
         </div>
@@ -129,7 +166,14 @@
 
             <!-- Dynamic List of Schools -->
             <div v-if="savedSchools.length > 0" class="space-y-4">
-              <div v-for="school in savedSchools" :key="school.id" class="flex items-center gap-4 p-4 border border-slate-100 rounded-2xl hover:border-[#009FB7]/30 hover:bg-[#F4F8FA]/50 transition-colors cursor-pointer group">
+              
+              <!-- Clicking the card links to the details page -->
+              <div 
+                v-for="school in savedSchools" 
+                :key="school.id" 
+                @click="$router.push({ name: 'school-details', params: { id: school.id } })"
+                class="flex items-center gap-4 p-4 border border-slate-100 rounded-2xl hover:border-[#009FB7]/30 hover:bg-[#F4F8FA]/50 transition-colors cursor-pointer group"
+              >
                 <div class="w-14 h-14 rounded-xl bg-slate-100 overflow-hidden shrink-0">
                   <img :src="school.image" class="w-full h-full object-cover" :alt="school.name" />
                 </div>
@@ -137,16 +181,22 @@
                   <h4 class="text-sm font-bold text-slate-900 truncate">{{ school.name }}</h4>
                   <p class="text-[11px] text-slate-500 flex items-center gap-1 mt-1">
                     <svg class="w-3 h-3 text-[#009FB7]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    {{ school.location }} • {{ school.level }}
+                    {{ school.category }} • {{ school.tuition }}
                   </p>
                 </div>
-                <button @click.stop="removeSchool(school.id)" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors shrink-0" title="Remove from saved">
+                <!-- Delete Button -->
+                <button 
+                  @click.stop="removeSchool(school.id)" 
+                  class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors shrink-0" 
+                  title="Remove from saved"
+                >
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                 </button>
               </div>
+
             </div>
 
-            <!-- Empty State (Shows automatically since the list starts empty) -->
+            <!-- Empty State -->
             <div v-else class="text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
               <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
               <h4 class="text-sm font-bold text-slate-700">No schools saved yet</h4>
@@ -164,11 +214,13 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
+// Import the central data store
+import { schoolsData, type School } from '../data/Data'
+
 const router = useRouter()
 
 // Data structure
 interface UserProfile { fullName: string; email: string }
-interface SavedSchool { id: number; name: string; location: string; level: string; image: string }
 
 // --- STATE ---
 const userData = ref<UserProfile>({ fullName: 'Loading...', email: 'loading@example.com' })
@@ -179,8 +231,13 @@ const activeApplications = ref(0) // Set to 0 initially
 const isEditingProfile = ref(false)
 const editForm = ref({ fullName: '' })
 
-// Starts completely EMPTY based on your request
-const savedSchools = ref<SavedSchool[]>([])
+// Change Password State
+const isChangingPassword = ref(false)
+const passwordForm = ref({ current: '', new: '', confirm: '' })
+const passwordMessage = ref({ text: '', type: '' }) // type: 'error' | 'success'
+
+// Using the School interface from Data.ts
+const savedSchools = ref<School[]>([])
 
 // Generate initials based on current name
 const userInitials = computed(() => {
@@ -198,7 +255,7 @@ onMounted(() => {
     return
   }
 
-  // Fetch the specific logged-in user's data
+  // 1. Load User Profile
   const currentUserStr = localStorage.getItem('currentUser')
   const usersArrayStr = localStorage.getItem('users')
 
@@ -206,7 +263,6 @@ onMounted(() => {
     const currentUser = JSON.parse(currentUserStr)
     const allUsers = JSON.parse(usersArrayStr)
 
-    // Match the specific user
     const matchedUser = allUsers.find((user: any) => user.email === currentUser.email)
 
     if (matchedUser && matchedUser.fullName) {
@@ -215,12 +271,9 @@ onMounted(() => {
         email: matchedUser.email
       }
     } else {
-      // THE FIX: If there is no full name saved in the database (e.g., an old account),
-      // fallback to using the first part of their email address instead of "Loading..."
       let fallbackName = 'EduFind Member'
       if (currentUser.email) {
         fallbackName = currentUser.email.split('@')[0]
-        // Capitalize the first letter
         fallbackName = fallbackName.charAt(0).toUpperCase() + fallbackName.slice(1)
       }
       
@@ -230,17 +283,25 @@ onMounted(() => {
       }
     }
   }
+
+  // 2. Load Saved Schools from LocalStorage
+  const savedIdsStr = localStorage.getItem('savedSchoolIds')
+  if (savedIdsStr) {
+    const savedIds: number[] = JSON.parse(savedIdsStr)
+    // Map the IDs stored in local storage to the actual school objects in Data.ts
+    savedSchools.value = schoolsData.filter(school => savedIds.includes(school.id))
+  }
 })
 
 // --- ACTIONS ---
 
-// Start Editing
+// Profile Name Editing
 const startEditing = () => {
+  isChangingPassword.value = false
   editForm.value.fullName = userData.value.fullName
   isEditingProfile.value = true
 }
 
-// Save New Profile Name
 const saveProfile = () => {
   // Update local display immediately
   userData.value.fullName = editForm.value.fullName
@@ -250,7 +311,6 @@ const saveProfile = () => {
   if (usersArrayStr) {
     const allUsers = JSON.parse(usersArrayStr)
     
-    // Find this exact user in the array and update their name
     const updatedUsers = allUsers.map((user: any) => {
       if (user.email === userData.value.email) {
         return { ...user, fullName: editForm.value.fullName }
@@ -258,17 +318,81 @@ const saveProfile = () => {
       return user
     })
     
-    // Save the array back
     localStorage.setItem('users', JSON.stringify(updatedUsers))
   }
   
-  // Close edit mode
   isEditingProfile.value = false
 }
 
-// Remove school from list dynamically
+// Security / Password Editing
+const startPasswordChange = () => {
+  isEditingProfile.value = false
+  isChangingPassword.value = true
+  passwordForm.value = { current: '', new: '', confirm: '' }
+  passwordMessage.value = { text: '', type: '' }
+}
+
+const savePassword = () => {
+  passwordMessage.value = { text: '', type: '' } // Reset messages
+  
+  // 1. Validation
+  if (!passwordForm.value.current || !passwordForm.value.new || !passwordForm.value.confirm) {
+    passwordMessage.value = { text: 'All fields are required.', type: 'error' }
+    return
+  }
+  if (passwordForm.value.new.length < 8) {
+    passwordMessage.value = { text: 'New password must be at least 8 characters.', type: 'error' }
+    return
+  }
+  if (passwordForm.value.new !== passwordForm.value.confirm) {
+    passwordMessage.value = { text: 'New passwords do not match.', type: 'error' }
+    return
+  }
+
+  // 2. Checking Local Storage
+  const usersArrayStr = localStorage.getItem('users')
+  if (usersArrayStr) {
+    const allUsers = JSON.parse(usersArrayStr)
+    const userIndex = allUsers.findIndex((u: any) => u.email === userData.value.email)
+    
+    if (userIndex !== -1) {
+      // Verify old password
+      if (allUsers[userIndex].password !== passwordForm.value.current) {
+        passwordMessage.value = { text: 'Incorrect current password.', type: 'error' }
+        return
+      }
+      
+      // Update with new password
+      allUsers[userIndex].password = passwordForm.value.new
+      localStorage.setItem('users', JSON.stringify(allUsers))
+      
+      // Update the active currentUser session
+      const currentUserStr = localStorage.getItem('currentUser')
+      if(currentUserStr) {
+          const currentUser = JSON.parse(currentUserStr)
+          currentUser.password = passwordForm.value.new
+          localStorage.setItem('currentUser', JSON.stringify(currentUser))
+      }
+
+      // Success feedback
+      passwordMessage.value = { text: 'Password updated successfully!', type: 'success' }
+      setTimeout(() => {
+        isChangingPassword.value = false
+      }, 1500)
+    }
+  }
+}
+
+// Remove school from list dynamically AND local storage
 const removeSchool = (idToRemove: number) => {
   savedSchools.value = savedSchools.value.filter(school => school.id !== idToRemove)
+  
+  const savedIdsStr = localStorage.getItem('savedSchoolIds')
+  if (savedIdsStr) { 
+    let savedIds: number[] = JSON.parse(savedIdsStr)
+    savedIds = savedIds.filter(id => id !== idToRemove)
+    localStorage.setItem('savedSchoolIds', JSON.stringify(savedIds))
+  }
 }
 
 // Logout and kick user to login page

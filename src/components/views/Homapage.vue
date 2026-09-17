@@ -189,6 +189,24 @@
             <span class="absolute top-3 left-3 bg-teal-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
               {{ school.category }}
             </span>
+            
+            <!-- NEW: Favorite (Save) Button -->
+            <button 
+              @click.stop="toggleSave(school.id)"
+              class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-200 z-10"
+              :class="isSaved(school.id) ? 'text-red-500' : 'text-slate-400 hover:text-red-400'"
+              title="Save to favorites"
+            >
+              <!-- Filled Heart if Saved -->
+              <svg v-if="isSaved(school.id)" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <!-- Outline Heart if not Saved -->
+              <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </button>
+
             <div class="absolute bottom-3 left-3 bg-slate-900/70 backdrop-blur-md text-amber-400 text-xs px-2 py-0.5 rounded font-bold flex items-center gap-1">
               ★ {{ school.rating }}
             </div>
@@ -222,9 +240,9 @@
             <!-- Action RouterLink -->
             <RouterLink 
               :to="{ name: 'school-details', params: { id: school.id } }" 
-              class="w-full text-center py-2.5 rounded-xl border border-teal-600 text-teal-600 font-bold text-xs hover:bg-teal-600 hover:text-white transition inline-block"
+              class="mt-auto w-full bg-[#009FB7] hover:bg-[#00899e] text-white text-xs font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
             >
-              Explore Program &rarr;
+              View Detailed Profile &rarr;
             </RouterLink>
           </div>
         </div>
@@ -339,23 +357,62 @@
     </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, computed, onMounted } from 'vue' // Added onMounted
+import { RouterLink, useRouter } from 'vue-router' // ADDED useRouter
 import { filterTabsData, featuresData, schoolsData } from '../data/Data'
 
-// NEW: Import your search logic
-import { useSearch } from '../Search' // Adjust path to where your useSearch.ts file is
+// Import search logic
+import { useSearch } from '../Search' 
 
-// Destructure the reactive variables and functions from the composable
+const router = useRouter() // Initialize router instance
+
 const { searchQuery, searchResults, executeSearch, goToSchool } = useSearch()
 
-// Local state for the location input
 const activeTab = ref<string>('All Types')
 
-// Import static data directly from the data file
 const filterTabs = filterTabsData
 const features = featuresData
 const schools = ref(schoolsData)
+
+// --- FAVORITE / SAVE LOGIC ---
+const savedSchoolIds = ref<number[]>([])
+
+// Load saved schools from localStorage when the page loads
+onMounted(() => {
+  const saved = localStorage.getItem('savedSchoolIds')
+  if (saved) {
+    savedSchoolIds.value = JSON.parse(saved)
+  }
+})
+
+// Check if a specific school is saved
+const isSaved = (id: number) => {
+  return savedSchoolIds.value.includes(id)
+}
+
+// Toggle Save State with Login Verification
+const toggleSave = (id: number) => {
+  // 1. Check if the user is authenticated
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
+  
+  if (!isAuthenticated) {
+    // 2. Not logged in? Show alert and send to login page
+    alert('Please log in to save schools to your favorites.')
+    router.push('/login')
+    return // Stop the function here so the school doesn't save!
+  }
+
+  // 3. User is logged in, proceed with saving normally
+  if (isSaved(id)) {
+    // Remove it from the list
+    savedSchoolIds.value = savedSchoolIds.value.filter(savedId => savedId !== id)
+  } else {
+    // Add it to the list
+    savedSchoolIds.value.push(id)
+  }
+  // Update localStorage so it remembers the selection
+  localStorage.setItem('savedSchoolIds', JSON.stringify(savedSchoolIds.value))
+}
 
 // Computed property to filter schools based on active tab AND limit to 3 items
 const filteredSchools = computed(() => {

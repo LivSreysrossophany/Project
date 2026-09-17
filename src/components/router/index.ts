@@ -4,8 +4,9 @@ import Explorepage from "../views/Explorepage.vue";
 import AboutUs from "../views/AboutUs.vue";
 import Loginpage from "../views/Loginpage.vue";
 import SignUp from "../views/SignUp.vue";
-import Profilepage from "../views/Profile.vue"; // Ensure this matches your exact filename (e.g., Profile.vue or Profilepage.vue)
+import Profilepage from "../views/Profile.vue";
 import Viewdetailspage from "../views/Viewdetailspage.vue";
+import Contectpage from "../views/Contectpage.vue";
 
 const routes = [
   {
@@ -21,7 +22,7 @@ const routes = [
   {
     path: "/explore/:id",
     name: "school-details",
-    component: Explorepage,
+    component: Viewdetailspage,
   },
   {
     path: "/about-us",
@@ -44,6 +45,11 @@ const routes = [
     component: Profilepage,
     meta: { requiresAuth: true } 
   },
+{
+  path: "/contact",
+  name: "contact",
+  component: Contectpage,
+}
 
  
 ];
