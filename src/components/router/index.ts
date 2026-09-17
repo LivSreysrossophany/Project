@@ -5,6 +5,7 @@ import AboutUs from "../views/AboutUs.vue";
 import Loginpage from "../views/Loginpage.vue";
 import SignUp from "../views/SignUp.vue";
 import Profilepage from "../views/Profile.vue"; // Ensure this matches your exact filename (e.g., Profile.vue or Profilepage.vue)
+import Viewdetailspage from "../views/Viewdetailspage.vue";
 
 const routes = [
   {
@@ -43,6 +44,8 @@ const routes = [
     component: Profilepage,
     meta: { requiresAuth: true } 
   },
+
+ 
 ];
 
 const router = createRouter({
