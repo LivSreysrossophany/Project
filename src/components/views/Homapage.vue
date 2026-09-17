@@ -30,8 +30,7 @@
         <p class="text-base sm:text-lg text-slate-300 max-w-xl mb-8 leading-relaxed">
           Find and apply for top scholarships effortlessly. Our smart assistant turns complex eligibility rules into clear, actionable paths to fund your education.
         </p>
-
-<!-- Search Bar -->
+           <!-- Search Bar -->
         <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl flex flex-col md:flex-row gap-3 text-slate-700">
           
           <div class="flex-1 flex items-center px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200 relative">
