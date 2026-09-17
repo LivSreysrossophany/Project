@@ -15,7 +15,7 @@
         </h1>
         
         <p class="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Join over 1.2M families discovering public and private schools that align with their students' unique talents and academic goals.
+          Let our smart tool guide you to top scholarships and financial aid built for your educational path.
         </p>
 
         <!-- Corrected Search Bar Wrapper -->
@@ -52,7 +52,7 @@
             @click="executeSearch" 
             class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition duration-200 shrink-0"
           >
-            <span>Search Schools</span>
+            <span>Search Scholarships</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
         </div> 
@@ -60,13 +60,13 @@
         <!-- Recent Searches -->
         <div class="flex items-center justify-center gap-3 mt-6 text-xs text-slate-500 flex-wrap">
           <span class="font-bold text-slate-400 uppercase tracking-wider text-[10px]">Recent Searches:</span>
-          <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">STEM High Schools</router-link>
+          <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">Full Funding</router-link>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">95112</router-link>
+          <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">STEM Scholarships</router-link>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Austin Montessori</router-link>
+          <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Study Abroad</router-link>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">IB Programs</router-link>
+          <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">Undergraduate</router-link>
         </div>
       </div>
     </section>
