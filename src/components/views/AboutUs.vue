@@ -14,13 +14,13 @@
 
       <div class="relative z-10 max-w-4xl mx-auto space-y-4">
         <span class="inline-block text-[10px] font-bold bg-[#009FB7]/20 text-[#009FB7] px-3 py-1 rounded-full uppercase tracking-widest border border-[#009FB7]/30">
-          DISCOVER OUR STORY
+          SMART SCHOLARSHIP ASSISTANT
         </span>
         
         <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-          Empowering <br />
-          Families Through <br />
-          <span class="text-[#009FB7]">Educational Clarity.</span>
+          Simplifying<br />
+          Scholarships for<br />
+          <span class="text-[#009FB7]">Every Student.</span>
         </h1>
 
         <p class="text-slate-300 text-xs md:text-sm max-w-md leading-relaxed pt-2">
@@ -47,14 +47,14 @@
         
         <!-- Left Content -->
         <div class="space-y-6">
-          <h2 class="text-2xl md:text-3xl font-bold text-slate-900">The EduFind Mission</h2>
+          <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Smart Scholarship Finder & Assistant</h2>
           
           <div class="space-y-4 text-xs text-slate-600 leading-relaxed">
             <p>
-              Finding the right school shouldn't feel like a shot in the dark. In an increasingly complex academic landscape, we serve as the trusted compass for parents navigating the journey from Pre-K to Graduation[cite: 3].
+              Finding the right scholarship shouldn't feel like a shot in the dark., we serve as the trusted assistant for students and families navigating the journey from High School to Graduation.
             </p>
             <p>
-              We aggregate millions of academic data points, verified reviews, and facility reports to create a transparent marketplace for education[cite: 3].
+              We aggregate verified scholarship opportunities, eligibility criteria, and application guides to create a transparent marketplace for student funding.
             </p>
           </div>
 
@@ -66,7 +66,7 @@
               </svg>
             </div>
             <p class="text-xs font-semibold text-[#009FB7]">
-              "Our goal is to reduce parent anxiety by 50% through data-driven matching by 2026."
+              "Our goal is to simplify scholarship discovery and reduce financial stress for 10,000+ students by 2026."
             </p>
           </div>
         </div>
@@ -75,7 +75,7 @@
         <div class="relative flex justify-center">
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white max-w-sm w-full">
             <img 
-              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" 
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfcNk9x6NOBqq3dZ4afIGIvd8zVMJpk0aZ51RSIKwQGQ&s=10" 
               alt="Graduation Cap" 
               class="w-full h-[380px] object-cover"
             />
@@ -83,7 +83,7 @@
             <!-- Floating Counter Badge -->
             <div class="absolute bottom-4 right-4 bg-white p-3 px-5 rounded-2xl shadow-lg border border-slate-100 text-center">
               <span class="block text-xl font-black text-[#009FB7]">50k+</span>
-              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">FAMILIES HELPED</span>
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">STUDENTS HELPED</span>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
           </span>
           <h2 class="text-2xl font-bold text-slate-900">Built on a Foundation of Integrity</h2>
           <p class="text-xs text-slate-500">
-            We aren't just a directory; we are an academic partner committed to the highest standards of data verification and bias prevention[cite: 3].
+            We aren't just a listing site; we are a dedicated scholarship assistant committed to verified opportunities and transparent funding options.
           </p>
         </div>
 
@@ -117,7 +117,7 @@
             </div>
             <h3 class="font-bold text-slate-900 text-sm">Clarity & Precision</h3>
             <p class="text-xs text-slate-500 leading-relaxed">
-              We eliminate the guesswork from school searches by providing verified, up-to-date data on every institution[cite: 3].
+             We eliminate the guesswork from scholarship applications by providing verified, up-to-date eligibility requirements and deadline data.
             </p>
           </div>
 
@@ -130,21 +130,22 @@
             </div>
             <h3 class="font-bold text-slate-900 text-sm">Student-First Philosophy</h3>
             <p class="text-xs text-slate-500 leading-relaxed">
-              Our platform is designed around the unique needs of learners, prioritizing well-being and academic fit above all[cite: 3].
+              We put students first. Our tool helps you find affordable school options and scholarships that fit your goals.
             </p>
           </div>
 
           <!-- Card 3 -->
           <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-3">
-            <div class="w-8 h-8 rounded-full bg-teal-50 text-[#009FB7] flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h1.5a2.5 2.5 0 002.5-2.5V11a2 2 0 00-2-2h-1c-1.01 0-1.791-.804-1.791-1.806V6.5A2.5 2.5 0 0012 4h-1a2 2 0 00-2 2v.5" />
-              </svg>
-            </div>
-            <h3 class="font-bold text-slate-900 text-sm">Global Reach, Local Depth</h3>
-            <p class="text-xs text-slate-500 leading-relaxed">
-              We combine international standards with granular local insights to help you understand the neighborhood context[cite: 3].
-            </p>
+          <!-- Icon Wrapper -->
+          <div class="w-8 h-8 rounded-full bg-teal-50 text-[#009FB7] flex items-center justify-center">
+            <!-- Bootstrap Icon -->
+            <i class="bi bi-globe2 text-base"></i>
+          </div>
+          
+          <h3 class="font-bold text-slate-900 text-sm">Global Reach, Local Depth</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Find scholarships nearby or around the world with simple, step-by-step guidance.
+          </p>
           </div>
 
         </div>

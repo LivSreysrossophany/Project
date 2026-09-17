@@ -6,21 +6,22 @@
       <div class="max-w-7xl mx-auto text-center">
         <!-- Badge -->
         <span class="inline-block bg-[#E0F4F4] text-[#009FB7] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
-          Discover Potential
+          DISCOVER SCHOLARSHIP OPPORTUNITIES
         </span>
         
         <!-- Heading -->
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#111827] tracking-tight mb-4">
-          Explore Top Academic Institutions
+          Explore Scholarships for Students
         </h1>
         
         <p class="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Join over 1.2M families discovering public and private schools that align with their students' unique talents and academic goals.
+          Discover scholarships, grants, and financial-aid opportunities that match each student's academic achievements, interests, and goals.
         </p>
 
         <!-- Corrected Search Bar Wrapper -->
         <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 text-slate-700">
           
+<<<<<<< HEAD
           <!-- School Name Input & Dropdown -->
           <div class="flex-1 flex items-center px-4 py-2 relative">
             <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -54,19 +55,36 @@
           >
             <span>Search Schools</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+=======
+          <!-- Keyword Input -->
+          <div class="flex-1 flex items-center w-full px-4 py-2 md:border-r border-slate-200">
+            <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input 
+              type="text" 
+              placeholder="Search university or keywords…" 
+              class="w-full bg-transparent border-none focus:ring-0 text-sm text-slate-800 placeholder-slate-400 pl-3 focus:outline-none"
+            />
+          </div>
+          
+          <!-- Search Button -->
+          <button class="w-full md:w-auto bg-[#009FB7] hover:bg-[#00899e] text-white font-semibold py-3 px-8 rounded-xl md:rounded-full transition-colors shrink-0">
+            Search University
+>>>>>>> 016192a8e1b8ab8749ed6eeb944e86c6a2ab789f
           </button>
         </div> <!-- Removed the broken/duplicate code below this! -->
 
         <!-- Recent Searches -->
         <div class="flex items-center justify-center gap-3 mt-6 text-xs text-slate-500 flex-wrap">
           <span class="font-bold text-slate-400 uppercase tracking-wider text-[10px]">Recent Searches:</span>
-          <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">STEM High Schools</router-link>
+          <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">STEM Scholarships</router-link>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">95112</router-link>
+          <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">Scholarships for International Students</router-link>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Austin Montessori</router-link>
+          <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Merit Scholarships</router-link>
           <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">IB Programs</router-link>
+          <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">Need-Based Scholarships</router-link>
         </div>
       </div>
     </section>
