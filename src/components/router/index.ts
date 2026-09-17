@@ -63,7 +63,6 @@ router.beforeEach((to, from, next) => {
   else if ((to.name === "login" || to.name === "signup") && isAuthenticated) {
     next({ name: "dashboard" });
   } 
-  // Otherwise, allow the navigation
   else {
     next();
   }

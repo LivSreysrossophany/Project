@@ -15,7 +15,7 @@ export interface School {
   rating: number
   tuition: string
   students: string
-  filters: string[]
+  tags: string[]
   image: string
 }
 // In this line can change a filter
@@ -54,7 +54,7 @@ export const featuresData: Feature[] = [
     iconPaths: ['M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'] 
   }
 ]
-// Add schooldata
+// Add schooldata 
 export const schoolsData: School[] = [
   {
     id: 1,
@@ -63,7 +63,7 @@ export const schoolsData: School[] = [
     rating: 4.9,
     tuition: '$18,500/yr',
     students: '1,250 Students',
-    filters: ['IB World School', 'STEM Focused', 'Public Available'],
+    tags: ['IB World School', 'STEM Focused', 'Public Available'],
     image: 'https://res.klook.com/image/upload/w_750,c_fill,q_85/v1710142781/hotel/mh3mkp4wcderwiytmwfb.jpg'
   },
   {
@@ -73,7 +73,7 @@ export const schoolsData: School[] = [
     rating: 4.8,
     tuition: 'Tuition Free',
     students: '850 Students',
-    filters: ['Robotics', 'Public Charter', 'AP Honors'],
+    tags: ['Robotics', 'Public Charter', 'AP Honors'],
     image: 'https://d25wby5c7p9100.cloudfront.net/public/uploads/5efe41b55010fe111dcedc326e59a5ab/images/files/1c8c2c773e6ab4d17e3bb855e6ac05b9/large/emilykeeney.spring.heritageoak-359.jpg?1752556015'
   },
   {
@@ -83,7 +83,7 @@ export const schoolsData: School[] = [
   rating: 5,
   tuition: '$2,000 - $5,000/yr',
   students: '2,000+ Students',
-  filters: ['Engineering', 'STEM', 'Business', 'IT', 'Private University', 'Research'],
+  tags: ['Engineering', 'STEM', 'Business', 'IT', 'Private University', 'Research'],
   image: 'https://sustainability-ai.org/paragon_university.jpg'
 },
   {
@@ -93,7 +93,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$700 - $2,000/yr',
     students: '5,000+ Students',
-    filters: ['Engineering', 'IT', 'Business', 'Private University', 'Architecture'],
+    tags: ['Engineering', 'IT', 'Business', 'Private University', 'Architecture'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZLrlqUbpRVC_iNl6uqN9-d18lg1G1jDP9A7jVV0cAHg&s=10'
   },
 {
@@ -103,7 +103,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$1,500 - $3,000/yr',
     students: '1,000+ Students',
-    filters: ['Engineering', 'STEM', 'Technology', 'Private University', 'Research'],
+    tags: ['Engineering', 'STEM', 'Technology', 'Private University', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXgjvVirx1MMLBOTbX2FiAuJgsJRS9O1Imw5vxQUaUtw&s=10'
   },
   {
@@ -113,7 +113,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$650 - $2500/yr',
     students: '1800+ Students',
-    filters: ['Engineering', 'STEM', 'Public University', 'Research'],
+    tags: ['Engineering', 'STEM', 'Public University', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsnuMu3rnOGpWTfWhEdzcdFEKBD4NVQC_hQwhU-iN7AA&s=10'
   },
 
@@ -124,7 +124,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$1,250 - $2,500/yr',
     students: '150+ new students/year',
-    filters: ['Engineering', 'STEM', 'Public Institute', 'Research', 'Digital Technology'],
+    tags: ['Engineering', 'STEM', 'Public Institute', 'Research', 'Digital Technology'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbtqm4TRY_v5OyED9afhxyNTKdlkN_hi9J0JWhD5yN7A&s=10'
   },
   {
@@ -134,7 +134,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$1,000 - $2,500/yr',
     students: '10,700+ Students',
-    filters: ['Business',
+    tags: ['Business',
     'Finance',
     'STEM',
     'Private University',
@@ -149,7 +149,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$650 - $2500/yr',
     students: '1800+ Students',
-    filters: ['Engineering', 'STEM', 'Public University', 'Research'],
+    tags: ['Engineering', 'STEM', 'Public University', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGDxPJQIC8VeEFjMoKD665NNMHgsJAnJmLGh1k7E0qdw&s=10'
   },
   {
@@ -159,7 +159,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$250 - $450/yr',
     students: '30,000+ Students',
-    filters: ['Engineering',
+    tags: ['Engineering',
     'STEM',
     'Public University',
     'Research',
@@ -174,7 +174,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$400 - $800/yr',
     students: '1,000+ Students',
-    filters: ['Engineering',
+    tags: ['Engineering',
     'STEM',
     'Public Institute',
     'Technical',
@@ -189,7 +189,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$500 - $1,500/yr',
     students: '1,000+ Students',
-    filters: [ 'Business',
+    tags: [ 'Business',
     'Finance',
     'Economics',
     'Public University',
@@ -204,7 +204,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$500 - $1,500/yr',
     students: '1,000+ Students',
-    filters: ['Business',
+    tags: ['Business',
     'Engineering',
     'STEM',
     'Private University',
@@ -219,7 +219,7 @@ export const schoolsData: School[] = [
   rating: 4,
   tuition: '$1,000 - $2,500/yr',
   students: '3,000+ Students',
-  filters: [
+  tags: [
     'Business',
     'Economics',
     'Law',
@@ -237,7 +237,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$500 - $1,500/yr',
     students: '1,500+ Students',
-    filters: [ 'Law',
+    tags: [ 'Law',
     'Economics',
     'Business',
     'Public University',
@@ -252,7 +252,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$400 - $1,200/yr',
     students: '5,000+ Students',
-    filters: ['Business',
+    tags: ['Business',
     'Management',
     'IT',
     'Private University',
@@ -267,7 +267,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$59,000 - $60,000/yr',
     students: '23,000+ Students',
-    filters: ['Business', 'Engineering', 'STEM', 'Research'],
+    tags: ['Business', 'Engineering', 'STEM', 'Research'],
     image: 'https://oscg.b-cdn.net/summercourses/assets/c2/c2ec23eacbd84ab235c24500f29e70e9ef6723d3bdedff732fc0671ed660cf10.jpg'
   },
   {
@@ -277,7 +277,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$62,000 - $65,000/yr',
     students: '11,000+ Students',
-    filters: ['Engineering', 'STEM', 'Computer Science', 'Research'],
+    tags: ['Engineering', 'STEM', 'Computer Science', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCISUuDBQ344RoRtFViJIilo_V0pUdVwq7MUPQOl1-w&s=10'
   },
   {
@@ -287,7 +287,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$60,000 - $65,000/yr',
     students: '17,000+ Students',
-    filters: ['Engineering', 'STEM', 'Business', 'Research'],
+    tags: ['Engineering', 'STEM', 'Business', 'Research'],
     image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b'
   },
   {
@@ -297,7 +297,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$35,000 - $60,000/yr',
     students: '26,000+ Students',
-    filters: ['Humanities', 'STEM', 'Business', 'Research'],
+    tags: ['Humanities', 'STEM', 'Business', 'Research'],
     image: 'https://dynamic-media.tacdn.com/media/photo-o/31/d2/7e/23/caption.jpg?w=700&h=500&s=1'
   },
   {
@@ -307,7 +307,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$35,000 - $65,000/yr',
     students: '24,000+ Students',
-    filters: ['Engineering', 'STEM', 'Humanities', 'Research'],
+    tags: ['Engineering', 'STEM', 'Humanities', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5GbrnmUKPRvr7TX0YuwAol124wMbRihaus02yw54Zxv_k0r6iROZfvpRg&s=10'
   },
   {
@@ -317,7 +317,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$30,000 - $55,000/yr',
     students: '97,000+ Students',
-    filters: ['Engineering', 'STEM', 'Business', 'Research'],
+    tags: ['Engineering', 'STEM', 'Business', 'Research'],
     image: 'https://d3d0lqu00lnqvz.cloudfront.net/media/media/UofT_cmh2315fl.jpg'
   },
   {
@@ -327,7 +327,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$25,000 - $50,000/yr',
     students: '53,000+ Students',
-    filters: ['Engineering', 'STEM', 'Business', 'Research'],
+    tags: ['Engineering', 'STEM', 'Business', 'Research'],
     image: 'https://images.unsplash.com/photo-1592280771190-3e2e4d571952'
   },
   {
@@ -337,7 +337,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$20,000 - $40,000/yr',
     students: '40,000+ Students',
-    filters: ['Engineering', 'STEM', 'Computer Science', 'Research'],
+    tags: ['Engineering', 'STEM', 'Computer Science', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX-8QLZCtnCIvW3TfCgzeJ1mRsNpCR1sda6WBKTksPzg&s=10'
   },
   {
@@ -347,7 +347,7 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$4,000 - $6,000/yr',
     students: '28,000+ Students',
-    filters: ['Engineering', 'STEM', 'Technology', 'Research'],
+    tags: ['Engineering', 'STEM', 'Technology', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRmtbDHIHQQgfuFsulJN9FsbcteEiONZWPgEDN_VLTGw&s=10'
   },
   {
@@ -357,16 +357,11 @@ export const schoolsData: School[] = [
     rating: 5,
     tuition: '$4,000 - $8,000/yr',
     students: '50,000+ Students',
-    filters: ['Engineering', 'STEM', 'Technology', 'Research'],
+    tags: ['Engineering', 'STEM', 'Technology', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ9rhc2DNTsggTxkmFbBkqvpWENEzuPQW_7xq0pfMX1g&s=10'
   }
-  
-    
-
-    
-
-
 ]
+
 
 
 

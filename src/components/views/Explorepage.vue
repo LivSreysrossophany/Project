@@ -18,26 +18,44 @@
           Join over 1.2M families discovering public and private schools that align with their students' unique talents and academic goals.
         </p>
 
-        <!-- Search Bar -->
-        <div class="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 p-2 flex flex-col md:flex-row items-center gap-2">
+        <!-- Corrected Search Bar Wrapper -->
+        <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 text-slate-700">
           
-          <!-- Keyword Input -->
-          <div class="flex-1 flex items-center w-full px-4 py-2 md:border-r border-slate-200">
-            <svg class="w-5 h-5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input 
-              type="text" 
-              placeholder="School name, curriculum or keyword..." 
-              class="w-full bg-transparent border-none focus:ring-0 text-sm text-slate-800 placeholder-slate-400 pl-3 focus:outline-none"
-            />
+          <!-- School Name Input & Dropdown -->
+          <div class="flex-1 flex items-center px-4 py-2 relative">
+            <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" v-model="searchQuery" placeholder="Search by School Name..." class="w-full focus:outline-none text-sm bg-transparent" />
+            
+            <!-- Dropdown Results List -->
+            <ul v-if="searchQuery.trim() !== '' && searchResults.length > 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50">
+              <li 
+                v-for="school in searchResults" 
+                :key="school.id" 
+                @click="goToSchool(school.id)" 
+                class="px-4 py-3 hover:bg-teal-50 cursor-pointer border-b border-slate-50 last:border-none flex items-center gap-3 transition-colors text-left"
+              >
+                <img :src="school.image" class="w-8 h-8 rounded-md object-cover shrink-0" />
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-slate-900 truncate">{{ school.name }}</div>
+                  <div class="text-[10px] text-slate-500">{{ school.category }}</div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- No Results Found State -->
+            <div v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 z-50 text-center text-xs text-slate-500">
+              No schools found matching "{{ searchQuery }}"
+            </div>
           </div>
-          
-          <!-- Search Button -->
-          <button class="w-full md:w-auto bg-[#009FB7] hover:bg-[#00899e] text-white font-semibold py-3 px-8 rounded-xl md:rounded-full transition-colors shrink-0">
-            Search Schools
+
+          <button 
+            @click="executeSearch" 
+            class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition duration-200 shrink-0"
+          >
+            <span>Search Schools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
-        </div>
+        </div> <!-- Removed the broken/duplicate code below this! -->
 
         <!-- Recent Searches -->
         <div class="flex items-center justify-center gap-3 mt-6 text-xs text-slate-500 flex-wrap">
@@ -62,7 +80,6 @@
         <!-- Results Count & Active Filters -->
         <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
           <div>
-            <!-- Dynamically update count based on filtered array -->
             <h2 class="text-xl font-extrabold text-[#111827]">{{ filteredSchools.length }} Results Found</h2>
             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1">Showing 1-{{ filteredSchools.length }} of {{ filteredSchools.length }} Schools</p>
           </div>
@@ -87,7 +104,6 @@
       <!-- Schools Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- Loop through FILTERED schools data instead of all schools -->
         <div 
           v-for="school in filteredSchools" 
           :key="school.id"
@@ -147,8 +163,8 @@
               </span>
             </div>
 
-            <!-- Action Button -->
-            <router-link :to="`/school/${school.id}`" class="mt-auto w-full bg-[#009FB7] hover:bg-[#00899e] text-white text-xs font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+            <!-- FIX: Corrected RouterLink path -->
+            <router-link :to="{ name: 'school-details', params: { id: school.id } }" class="mt-auto w-full bg-[#009FB7] hover:bg-[#00899e] text-white text-xs font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
               View Detailed Profile
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
             </router-link>
@@ -163,28 +179,6 @@
         <button @click="activeTab = 'All Types'" class="mt-4 text-[#009FB7] hover:underline font-bold text-sm">Clear Filters</button>
       </div>
 
-      <!-- Pagination -->
-      <div v-if="filteredSchools.length > 0" class="mt-12 pt-6 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-slate-500 text-center md:text-left">
-          <span class="font-bold text-slate-700">Showing results 1 - {{ filteredSchools.length }}</span><br/>
-          From a total of {{ filteredSchools.length }} verified schools near you
-        </p>
-        
-        <div class="flex items-center gap-1 sm:gap-2">
-          <button class="px-2 sm:px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-slate-700 transition-colors flex items-center gap-1 disabled:opacity-50" disabled>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-            <span class="hidden sm:inline">Previous</span>
-          </button>
-          
-          <button class="w-8 h-8 rounded-lg bg-[#009FB7] text-white text-xs font-bold flex items-center justify-center shadow-sm">1</button>
-          
-          <button class="px-2 sm:px-3 py-1.5 text-xs font-bold text-[#009FB7] hover:text-[#00899e] transition-colors flex items-center gap-1">
-            <span class="hidden sm:inline">Next</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-          </button>
-        </div>
-      </div>
-
     </section>
   </div>
 </template>
@@ -193,10 +187,14 @@
 import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { schoolsData, filterTabsData, type School } from '../data/Data' 
+import { useSearch } from '../Search'
 
 // State variables
 const schools = ref<School[]>(schoolsData)
 const filterTabs = ref<string[]>(filterTabsData)
+
+// search
+const { searchQuery, searchResults, executeSearch, goToSchool } = useSearch()
 
 // Set the active tab to the first item ('All Types') by default
 const activeTab = ref<string>(filterTabsData[0])

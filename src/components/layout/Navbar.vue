@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-3 font-sans relative">
+  <header class="w-full bg-white border-b border-gray-100 px-4 md:px-6 py-3 font-sans relative z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       
       <!-- Logo / Home Link -->
@@ -14,7 +14,7 @@
       </router-link>
 
       <!-- Desktop Center Navigation -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 shrink-0">
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 shrink-0 ps-20">
         <router-link to="/" class="hover:text-slate-900 transition-colors">Home</router-link>
         <router-link to="/explore" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50 block">
           <span>Explore</span>
@@ -25,18 +25,39 @@
       <!-- Desktop Right Section -->
       <div class="hidden md:flex items-center gap-3 shrink-0">
         
-        <!-- Search Form -->
+        <!-- Desktop Search Form with Dropdown -->
         <form @submit.prevent="executeSearch" class="hidden md:flex items-center relative flex-1 max-w-xs">
           <input
             v-model="searchQuery"
             type="text"
-            placeholder="Search "
-            class="w-[150px] bg-slate-50 border border-slate-200 pl-9 pr-4 py-1.5 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/20 focus:border-[#009FB7] transition-all"
+            placeholder="Search..."
+            class="w-[200px] bg-slate-50 border border-slate-200 pl-9 pr-4 py-1.5 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/20 focus:border-[#009FB7] transition-all"
           />
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 absolute left-3 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.3-4.3" />
           </svg>
+
+          <!-- Dropdown Results List -->
+          <ul v-if="searchQuery.trim() !== '' && searchResults.length > 0" class="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden z-50">
+            <li 
+              v-for="school in searchResults" 
+              :key="school.id" 
+              @click="goToSchool(school.id)" 
+              class="px-3 py-2.5 hover:bg-teal-50 cursor-pointer border-b border-slate-50 last:border-none flex items-center gap-3 transition-colors text-left"
+            >
+              <img :src="school.image" class="w-8 h-8 rounded-md object-cover shrink-0" />
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-slate-900 truncate">{{ school.name }}</div>
+                <div class="text-[10px] text-slate-500 truncate">{{ school.category }}</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- No Results State -->
+          <div v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" class="absolute top-full left-0 w-full mt-2 bg-white rounded-xl shadow-xl border border-slate-100 p-3 z-50 text-center text-xs text-slate-500">
+            No schools found.
+          </div>
         </form>
         
         <!-- Auth Buttons (Hidden if Authenticated) -->
@@ -83,15 +104,36 @@
       </div>
     </div>
 
-    <!-- Mobile Collapsible Search Input -->
-    <div v-if="isSearchOpen" class="md:hidden pt-3 px-1">
+    <!-- Mobile Collapsible Search Input with Dropdown -->
+    <div v-if="isSearchOpen" class="md:hidden pt-3 px-1 relative">
       <form @submit.prevent="executeSearch" class="relative flex items-center">
-        <input v-model="searchQuery" type="text" placeholder="Search..." class="w-full bg-slate-50 border border-slate-200 pl-9 pr-4 py-2 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/20 focus:border-[#009FB7]" autofocus />
+        <input v-model="searchQuery" type="text" placeholder="Search schools..." class="w-full bg-slate-50 border border-slate-200 pl-9 pr-4 py-2 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/20 focus:border-[#009FB7]" autofocus />
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 absolute left-3 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.3-4.3" />
         </svg>
       </form>
+
+      <!-- Mobile Dropdown Results -->
+      <ul v-if="searchQuery.trim() !== '' && searchResults.length > 0" class="absolute top-full mt-2 left-1 right-1 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden z-50">
+        <li 
+          v-for="school in searchResults" 
+          :key="school.id" 
+          @click="goToSchool(school.id)" 
+          class="px-3 py-2.5 hover:bg-teal-50 cursor-pointer border-b border-slate-50 last:border-none flex items-center gap-3 transition-colors text-left"
+        >
+          <img :src="school.image" class="w-8 h-8 rounded-md object-cover shrink-0" />
+          <div class="min-w-0">
+            <div class="text-xs font-bold text-slate-900 truncate">{{ school.name }}</div>
+            <div class="text-[10px] text-slate-500 truncate">{{ school.category }}</div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Mobile No Results -->
+      <div v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" class="absolute top-full mt-2 left-1 right-1 bg-white rounded-xl shadow-xl border border-slate-100 p-3 z-50 text-center text-xs text-slate-500">
+        No schools found.
+      </div>
     </div>
 
     <!-- Mobile Dropdown Navigation -->
@@ -100,9 +142,6 @@
         <router-link to="/" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50">Home</router-link>
         <router-link to="/explore" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50 flex items-center justify-between">
           <span>Explore</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 9 6 6 6-6" />
-          </svg>
         </router-link>
         <router-link to="/about-us" @click="isMenuOpen = false" class="hover:text-slate-900 py-1 transition-colors px-2 rounded-md hover:bg-slate-50">About Us</router-link>
       </nav>
@@ -141,7 +180,9 @@ import { useRoute } from "vue-router";
 import { useSearch } from "../Search";
 
 const route = useRoute();
-const { searchQuery, isSearchOpen, toggleSearch, executeSearch } = useSearch();
+
+// Extract the new reactive variables (searchResults) and functions (goToSchool)
+const { searchQuery, searchResults, isSearchOpen, toggleSearch, executeSearch, goToSchool } = useSearch();
 
 // UI state
 const isMenuOpen = ref<boolean>(false);
@@ -159,8 +200,7 @@ onMounted(() => {
   checkAuthStatus();
 });
 
-// 2. IMPORTANT: Re-check every time the URL (route) changes! 
-// This makes the navbar react instantly after logging in or logging out.
+// 2. Re-check every time the URL (route) changes! 
 watch(
   () => route.path,
   () => {

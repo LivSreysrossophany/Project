@@ -31,22 +31,43 @@
           Find and apply for top scholarships effortlessly. Our smart assistant turns complex eligibility rules into clear, actionable paths to fund your education.
         </p>
 
-        <!-- Search Bar -->
+<!-- Search Bar -->
         <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl flex flex-col md:flex-row gap-3 text-slate-700">
-          <div class="flex-1 flex items-center px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200">
+          
+          <!-- School Name Input (Added relative positioning and dropdown) -->
+          <div class="flex-1 flex items-center px-4 py-2 border-b md:border-b-0 md:border-r border-slate-200 relative">
             <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             <input type="text" v-model="searchQuery" placeholder="Search by School Name..." class="w-full focus:outline-none text-sm bg-transparent" />
+            
+            <!-- NEW: Dropdown Results List -->
+            <ul v-if="searchQuery.trim() !== '' && searchResults.length > 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50">
+              <li 
+                v-for="school in searchResults" 
+                :key="school.id" 
+                @click="goToSchool(school.id)" 
+                class="px-4 py-3 hover:bg-teal-50 cursor-pointer border-b border-slate-50 last:border-none flex items-center gap-3 transition-colors text-left"
+              >
+                <img :src="school.image" class="w-8 h-8 rounded-md object-cover shrink-0" />
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-slate-900 truncate">{{ school.name }}</div>
+                  <div class="text-[10px] text-slate-500">{{ school.category }}</div>
+                </div>
+              </li>
+            </ul>
+
+            <!-- NEW: No Results Found State -->
+            <div v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 z-50 text-center text-xs text-slate-500">
+              No schools found matching "{{ searchQuery }}"
+            </div>
           </div>
 
-
-
-          <RouterLink 
-            :to="{ name: 'schools-search', query: { q: searchQuery, location: locationQuery } }" 
+          <button 
+            @click="executeSearch" 
             class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition duration-200 shrink-0"
           >
             <span>Search Schools</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </RouterLink>
+          </button>
         </div>
 
         <!-- Rating / Trust Bar -->
@@ -211,7 +232,6 @@
         </div>
       </div>
     </section>
-
     <!-- SECTION 4: METRICS BANNER -->
     <section class="bg-teal-600 text-white py-12 mt-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -323,13 +343,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
-
-// Updated import to point to Data.ts instead of homeData.ts
 import { filterTabsData, featuresData, schoolsData } from '../data/Data'
 
-// Search Inputs State
-const searchQuery = ref<string>('')
-const locationQuery = ref<string>('')
+// NEW: Import your search logic
+import { useSearch } from '../Search' // Adjust path to where your useSearch.ts file is
+
+// Destructure the reactive variables and functions from the composable
+const { searchQuery, searchResults, executeSearch, goToSchool } = useSearch()
+
+// Local state for the location input
 const activeTab = ref<string>('All Types')
 
 // Import static data directly from the data file
@@ -337,12 +359,17 @@ const filterTabs = filterTabsData
 const features = featuresData
 const schools = ref(schoolsData)
 
-// Computed property to filter schools based on active tab
+// Computed property to filter schools based on active tab AND limit to 3 items
 const filteredSchools = computed(() => {
-  if (activeTab.value === 'All Types') return schools.value
-  return schools.value.filter(school => 
-    school.category.toLowerCase().includes(activeTab.value.toLowerCase()) ||
-    school.tags.some(tag => tag.toLowerCase().includes(activeTab.value.toLowerCase()))
-  )
+  let result = schools.value;
+  
+  if (activeTab.value !== 'All Types') {
+    result = schools.value.filter(school => 
+      school.category.toLowerCase().includes(activeTab.value.toLowerCase()) ||
+      school.tags.some(tag => tag.toLowerCase().includes(activeTab.value.toLowerCase()))
+    )
+  }
+  
+  return result.slice(0, 3);
 })
 </script>
