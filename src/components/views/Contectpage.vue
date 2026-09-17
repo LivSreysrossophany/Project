@@ -52,7 +52,7 @@
               <div>
                 <h4 class="text-sm font-bold text-slate-900 mb-1">Call Us</h4>
                 <p class="text-xs text-slate-500 mb-2">Mon-Fri from 8am to 5pm.</p>
-                <a href="tel:+85523000000" class="text-sm font-semibold text-[#009FB7] hover:underline">+855 23 000 000</a>
+                <a href="tel:+85516816888" class="text-sm font-semibold text-[#009FB7] hover:underline">+855 16 816 888</a>
               </div>
             </div>
 

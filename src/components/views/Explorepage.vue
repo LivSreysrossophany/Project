@@ -2,7 +2,10 @@
   <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 pb-16">
     
     <!-- HERO SECTION -->
-    <section class="bg-white pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
+    <section 
+  class="relative bg-cover bg-center pt-16 pb-12 px-4 sm:px- lg:px-10 border-b border-slate-500"
+  style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqmwSBCOYWCsXG2wWvvxaBMwGHbwQ5sNyFycanhe1DRw&s=10');"
+>
       <div class="max-w-7xl mx-auto text-center">
         <!-- Badge -->
         <span class="inline-block bg-[#E0F4F4] text-[#009FB7] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
@@ -10,13 +13,13 @@
         </span>
         
         <!-- Heading -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#111827] tracking-tight mb-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#009FB7] tracking-tight mb-4">
           Explore Top Academic Institutions
         </h1>
         
-        <p class="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Let our smart tool guide you to top scholarships and financial aid built for your educational path.
-        </p>
+        <p class="text-sm sm:text-base font-extrabold max-w-2xl mx-auto mb-10 leading-relaxed text-white drop-shadow-sm">
+  Let our smart tool guide you to top scholarships and financial aid built for your educational path.
+</p>
 
         <!-- Corrected Search Bar Wrapper -->
         <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 text-slate-700">
@@ -24,7 +27,7 @@
           <!-- School Name Input & Dropdown -->
           <div class="flex-1 flex items-center px-4 py-2 relative">
             <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" v-model="searchQuery" placeholder="Search by School Name..." class="w-full focus:outline-none text-sm bg-transparent" />
+            <input type="text" v-model="searchQuery" placeholder="Search by University Name..." class="w-full focus:outline-none text-sm bg-transparent" />
             
             <!-- Dropdown Results List -->
             <ul v-if="searchQuery.trim() !== '' && searchResults.length > 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50">
@@ -72,7 +75,20 @@
     </section>
 
     <!-- RESULTS SECTION -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+     <section 
+  class="relative bg-cover bg-center pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-100 "
+  style="background-image: url('');"
+>
+  
+  <!-- Background overlay -->
+  <div class="absolute inset-0 bg-white/80"></div>
+
+  <!-- Your content -->
+  <div class="relative max-w-7xl mx-auto text-center">
+  </div>
+
+</section>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 bg-white/60 rounded-3xl">
       
       <!-- Results Header -->
       <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">

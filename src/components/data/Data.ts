@@ -144,12 +144,12 @@ export const schoolsData: School[] = [
   },
     {
     id: 9,
-    name: 'Institute of Technology of Cambodia',
-    category: 'Public Institute',
+    name: 'American University of Phnom Penh (AUPP)',
+    category: 'Private University',
     rating: 5,
-    tuition: '$650 - $2500/yr',
-    students: '1800+ Students',
-    tags: ['Engineering', 'STEM', 'Public University', 'Research'],
+    tuition: '$6,000 - $9,000/yr',
+    students: '1,950+ Students',
+    tags: ['Business', 'Technology', 'Law', 'Social Sciences', 'Research'],
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGDxPJQIC8VeEFjMoKD665NNMHgsJAnJmLGh1k7E0qdw&s=10'
   },
   {

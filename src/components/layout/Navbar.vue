@@ -3,15 +3,19 @@
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
       
       <!-- Logo / Home Link -->
-      <router-link to="/" class="flex items-center gap-3 cursor-pointer shrink-0">
-        <div class="bg-[#009FB7] p-2.5 rounded-xl text-white flex items-center justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-            <path d="M6 12v5c3 3 9 3 12 0v-5" />
-          </svg>
-        </div>
-        <span class="text-xl font-bold text-slate-800 tracking-tight">EduFind</span>
-      </router-link>
+        <!-- Logo / Home Link -->
+<router-link to="/" class="flex items-center gap-3 cursor-pointer shrink-0">
+
+  <div class="w-12 h-12 rounded-[18px] overflow-hidden shadow-sm">
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReySN0r9gdRt0ZBSifPTBFSURIKXXdXXhZPR_JQC2waw&s=10"
+      alt="Logo"
+      class="w-full h-full object-cover"
+    />
+  </div>
+        <!-- Logo Title Text -->
+        <span class="text-2xl font-bold text-[#0F172A] tracking-tight">ScholarFinder</span>
+        </router-link>
 
       <!-- Desktop Center Navigation -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 shrink-0 ">
