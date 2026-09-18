@@ -45,18 +45,26 @@ const routes = [
     component: Profilepage,
     meta: { requiresAuth: true } 
   },
-{
-  path: "/contact",
-  name: "contact",
-  component: Contectpage,
-}
-
- 
+  {
+    path: "/contact",
+    name: "contact",
+    component: Contectpage,
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  // --- ADDED SCROLL BEHAVIOR HERE ---
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      // If the user uses the back/forward buttons, return to where they were
+      return savedPosition;
+    } else {
+      // Otherwise, always scroll to the very top of the new page
+      return { top: 0 };
+    }
+  }
 });
 
 // Navigation Guard for Authentication protection
