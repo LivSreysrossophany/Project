@@ -136,7 +136,19 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="flex gap-3 w-full md:w-auto shrink-0">
+            <div class="flex flex-wrap sm:flex-nowrap gap-3 w-full md:w-auto shrink-0">
+              
+              <!-- NEW: Map Button -->
+              <a
+                :href="`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(school.name)}`"
+                target="_blank"
+                class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 px-5 py-3 rounded-xl font-bold text-xs transition-colors shadow-sm"
+              >
+                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Map
+              </a>
+
+              <!-- Favorite / Save Button -->
               <button
                 @click="toggleSave"
                 :class="
@@ -144,7 +156,7 @@
                     ? 'bg-red-50 text-red-500 border-red-200'
                     : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                 "
-                class="flex-1 md:flex-none flex items-center justify-center gap-2 border px-6 py-3 rounded-xl font-bold text-xs transition-colors shadow-sm"
+                class="flex-1 md:flex-none flex items-center justify-center gap-2 border px-5 py-3 rounded-xl font-bold text-xs transition-colors shadow-sm"
               >
                 <svg
                   class="w-4 h-4"
@@ -161,8 +173,9 @@
                 </svg>
                 {{ isSaved ? "Saved" : "Save" }}
               </button>
+
               <button
-                class="flex-1 md:flex-none bg-[#009FB7] hover:bg-[#00899e] text-white px-8 py-3 rounded-xl font-bold text-xs shadow-lg shadow-[#009FB7]/25 transition-colors"
+                class="flex-1 md:flex-none bg-[#009FB7] hover:bg-[#00899e] text-white px-6 py-3 rounded-xl font-bold text-xs shadow-lg shadow-[#009FB7]/25 transition-colors"
               >
                 Apply Now
               </button>
@@ -359,7 +372,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { schoolsData, type School } from "../data/Data"; // Ensure this path is correct for your project
+import { schoolsData, type School } from "../data/Data"; 
 
 const route = useRoute();
 const router = useRouter();
@@ -371,14 +384,18 @@ const isSaved = ref<boolean>(false);
 
 // Fetch data when component loads
 onMounted(() => {
-  // Get the ID from the URL (e.g., /explore/3 -> ID is 3)
   const routeId = Number(route.params.id);
-
-  // Find the specific school in your Data.ts array
   const foundSchool = schoolsData.find((s) => s.id === routeId);
 
   if (foundSchool) {
     school.value = foundSchool;
+    
+    // Check if this school is already saved in localStorage
+    const saved = localStorage.getItem('savedSchoolIds')
+    if (saved) {
+      const savedIds = JSON.parse(saved)
+      isSaved.value = savedIds.includes(foundSchool.id)
+    }
   }
 
   // Fake a quick loading state so the page feels smooth
@@ -392,11 +409,43 @@ const goBack = () => {
   router.push("/explore"); // Sends user back to search page
 };
 
-// Interaction
+// Interaction (Toggle Save with Login Verification)
 const toggleSave = () => {
-  isSaved.value = !isSaved.value;
-  if (isSaved.value) {
-    alert(`${school.value?.name} has been saved to your dashboard!`);
+  // 1. Check if user is authenticated
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
+  
+  if (!isAuthenticated) {
+    alert('Please log in to save schools to your favorites.')
+    router.push('/login')
+    return // Stop here!
   }
+
+  if (!school.value) return;
+
+  const schoolId = school.value.id;
+  let savedIds: number[] = [];
+  
+  // Get current saved list
+  const savedStr = localStorage.getItem('savedSchoolIds');
+  if (savedStr) {
+    savedIds = JSON.parse(savedStr);
+  }
+
+  // Toggle Logic
+  if (isSaved.value) {
+    // Remove it
+    savedIds = savedIds.filter(id => id !== schoolId);
+    isSaved.value = false;
+  } else {
+    // Add it
+    if (!savedIds.includes(schoolId)) {
+      savedIds.push(schoolId);
+    }
+    isSaved.value = true;
+    alert(`${school.value.name} has been saved to your dashboard!`);
+  }
+
+  // Save back to localStorage so Profile page can read it
+  localStorage.setItem('savedSchoolIds', JSON.stringify(savedIds));
 };
-</script>
+</script> 

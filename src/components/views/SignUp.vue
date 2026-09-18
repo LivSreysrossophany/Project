@@ -1,9 +1,9 @@
 <template>
   <div class="min-h-screen bg-[#FAFAFA] flex items-center justify-center p-4 sm:p-6 lg:p-12 font-sans text-slate-800">
-    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 items-center">
+    <div class="w-full max-w-6xl mx-auto flex lg:grid lg:grid-cols-2 gap-12 lg:gap-0 items-center justify-center">
       
-      <!-- LEFT SECTION: INFO & GRAPHICS -->
-      <div class="lg:pr-16 lg:border-r border-slate-200 flex flex-col justify-center h-full">
+      <!-- LEFT SECTION: INFO & GRAPHICS (Hidden on screens smaller than 'lg' laptops) -->
+      <div class="hidden lg:flex flex-col justify-center h-full lg:pr-16 lg:border-r border-slate-200">
         <h1 class="text-3xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight mb-4 text-[#111827]">
           Join the <span class="text-[#009FB7]">Scholarship</span> Community
         </h1>
@@ -39,36 +39,35 @@
             </div>
             <div>
               <h4 class="text-[11px] sm:text-xs font-bold text-slate-900 mb-0.5">Nationwide Reach</h4>
-              <p class="text-[11px] text-slate-500">50k+ Universitys listed</p>
+              <p class="text-[11px] text-slate-500">50k+ Universities listed</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- RIGHT SECTION: SIGNUP FORM -->
-      <div class="lg:pl-16 flex flex-col justify-center mb-27">
+      <!-- RIGHT SECTION: SIGNUP FORM (Centers automatically when left section is hidden) -->
+      <div class="w-full flex flex-col justify-center lg:pl-16">
         <div class="max-w-md w-full mx-auto lg:mx-0">
           
           <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Create your account</h2>
 
           <!-- Error Message Alert -->
-          <div v-if="errorMessage" class="mb-6 bg-red-50 border border-red-200 text-red-600 text-xs px-4 py-3 rounded-xl flex items-center gap-2">
+          <div v-if="errorMessage" class="mt-5 mb-6 bg-red-50 border border-red-200 text-red-600 text-xs px-4 py-3 rounded-xl flex items-center gap-2">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <span>{{ errorMessage }}</span>
           </div>
 
           <!-- Success Message Alert -->
-          <div v-if="successMessage" class="mb-6 bg-teal-50 border border-teal-200 text-teal-700 text-xs px-4 py-3 rounded-xl flex items-center gap-2">
+          <div v-if="successMessage" class="mt-5 mb-6 bg-teal-50 border border-teal-200 text-teal-700 text-xs px-4 py-3 rounded-xl flex items-center gap-2">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span>{{ successMessage }}</span>
           </div>
 
-          <form @submit.prevent="handleSignup" class="space-y-5">
-
+          <form @submit.prevent="handleSignup" class="space-y-5 mt-6">
 
             <!-- Full Name Field -->
-            <div class="">
-              <label class="block text-[10px] font-bold text-slate-600 uppercase tracking-wider mt-5 mb-2">Full Name</label>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">Full Name</label>
               <div class="relative flex items-center">
                 <span class="absolute left-3.5 text-slate-400">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
@@ -100,13 +99,14 @@
 
             <!-- Password Field -->
             <div>
-              <label class="block text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-5">Create Password</label>
+              <label class="block text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">Create Password</label>
               <div class="relative flex items-center">
                 <span class="absolute left-3.5 text-slate-400">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                 </span>
                 <input
                   v-model="password"
+                  :type="showPassword ? 'text' : 'password'"
                   placeholder="Min. 8 characters"
                   class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                 />
@@ -137,9 +137,10 @@
             </div>
 
             <p class="text-xs text-slate-500 my-5">
-            Already have an account? 
-            <RouterLink to="/login" class="text-[#009FB7] font-semibold hover:underline">Log in</RouterLink>
-          </p>
+              Already have an account? 
+              <RouterLink to="/login" class="text-[#009FB7] font-semibold hover:underline">Log in</RouterLink>
+            </p>
+
             <!-- Submit Button -->
             <button
               type="submit"
@@ -188,7 +189,7 @@ const handleSignup = (): void => {
   else if (email.value === '' || !email.value.includes('@')) {
     errorMessage.value = 'Please enter a valid email address.'
   } 
-  else if (password.value.length <8) {
+  else if (password.value.length < 8) {
     errorMessage.value = 'Password must be at least 8 characters long.'
   } 
   else if (agreeTerms.value === false) {
@@ -199,10 +200,15 @@ const handleSignup = (): void => {
     // Show success message
     successMessage.value = 'Account created successfully! Redirecting to login...'
 
-    // IMPORTANT: Even without a backend, we need to save the user somewhere 
-    // in the browser so the Login page can find it.
     const savedUsers = JSON.parse(localStorage.getItem('users') || '[]')
-    savedUsers.push({ email: email.value, password: password.value })
+    
+    // FIX RESTORED: Saving fullName!
+    savedUsers.push({ 
+      fullName: fullName.value,
+      email: email.value, 
+      password: password.value 
+    })
+    
     localStorage.setItem('users', JSON.stringify(savedUsers))
 
     // Redirect to login page after 1.5 seconds
