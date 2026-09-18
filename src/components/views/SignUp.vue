@@ -5,7 +5,7 @@
       <!-- LEFT SECTION: INFO & GRAPHICS -->
       <div class="lg:pr-16 lg:border-r border-slate-200 flex flex-col justify-center h-full">
         <h1 class="text-3xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight mb-4 text-[#111827]">
-          Join the <span class="text-[#009FB7]">EduFind</span> Community
+          Join the <span class="text-[#009FB7]">Scholarship</span> Community
         </h1>
         
         <p class="text-sm sm:text-base text-slate-600 mb-10 leading-relaxed max-w-md">
@@ -15,7 +15,7 @@
         <!-- Main Image -->
         <div class="relative rounded-3xl overflow-hidden shadow-sm mb-10 max-w-lg bg-slate-100 border border-slate-200/60">
           <img 
-            src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=1000" 
+            src="../image/pic.jpg" 
             alt="Students and teacher collaborating" 
             class="w-full h-[280px] sm:h-[320px] object-cover"
           />
@@ -39,7 +39,7 @@
             </div>
             <div>
               <h4 class="text-[11px] sm:text-xs font-bold text-slate-900 mb-0.5">Nationwide Reach</h4>
-              <p class="text-[11px] text-slate-500">50k+ Schools listed</p>
+              <p class="text-[11px] text-slate-500">50k+ Universitys listed</p>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
                 <input
                   v-model="fullName"
                   type="text"
-                  placeholder="John son"
+                  placeholder="Pa Bona"
                   class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                 />
               </div>
@@ -92,7 +92,7 @@
                 <input
                   v-model="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="example@gmail.com"
                   class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                 />
               </div>
@@ -107,7 +107,6 @@
                 </span>
                 <input
                   v-model="password"
-                  :type="showPassword ? 'text' : 'password'"
                   placeholder="Min. 8 characters"
                   class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-10 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                 />
@@ -189,7 +188,7 @@ const handleSignup = (): void => {
   else if (email.value === '' || !email.value.includes('@')) {
     errorMessage.value = 'Please enter a valid email address.'
   } 
-  else if (password.value.length < 8) {
+  else if (password.value.length <8) {
     errorMessage.value = 'Password must be at least 8 characters long.'
   } 
   else if (agreeTerms.value === false) {

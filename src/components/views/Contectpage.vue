@@ -40,7 +40,7 @@
               <div>
                 <h4 class="text-sm font-bold text-slate-900 mb-1">Email Us</h4>
                 <p class="text-xs text-slate-500 mb-2">Our team usually responds within 24 hours.</p>
-                <a href="mailto:support@edufind.com" class="text-sm font-semibold text-[#009FB7] hover:underline">support@edufind.com</a>
+                <a href="mailto:livsreysrossophany@gmail.com" class="text-sm font-semibold text-[#009FB7] hover:underline">livsreysrossophany@gmail.com</a>
               </div>
             </div>
 
@@ -52,7 +52,7 @@
               <div>
                 <h4 class="text-sm font-bold text-slate-900 mb-1">Call Us</h4>
                 <p class="text-xs text-slate-500 mb-2">Mon-Fri from 8am to 5pm.</p>
-                <a href="tel:+85516816888" class="text-sm font-semibold text-[#009FB7] hover:underline">+855 16 816 888</a>
+                <a href="tel:+85516816888" class="text-sm font-semibold text-[#009FB7] hover:underline">+855 81 248 587</a>
               </div>
             </div>
 
@@ -95,7 +95,7 @@
                     v-model="form.name" 
                     type="text" 
                     required
-                    placeholder="John Doe" 
+                    placeholder="Pa Bona" 
                     class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                   />
                 </div>
@@ -107,7 +107,7 @@
                     v-model="form.email" 
                     type="email" 
                     required
-                    placeholder="john@example.com" 
+                    placeholder="example@gmail.com" 
                     class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all"
                   />
                 </div>

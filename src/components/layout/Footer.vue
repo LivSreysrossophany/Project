@@ -9,10 +9,10 @@
           <h3 class="text-white font-bold text-base tracking-wide">Contact Us</h3>
           <address class="not-italic text-xs text-slate-400 space-y-1.5 leading-relaxed">
             <p>Smart Technology Academy , Phnom Penh City, ED 16888</p>
-            <p><a href="tel:+15551234567" class="hover:text-white transition-colors duration-200">+(855) 16 816 888</a></p>
+            <p><a href="tel:+15551234567" class="hover:text-white transition-colors duration-200">+(855) 81 248 587</a></p>
             <p>
               <a href="mailto:support@edufind.example" class="text-[#009FB7] hover:underline break-all">
-                support@edufind.example
+                livsreysrossophany@gmail.com
               </a>
             </p>
           </address>

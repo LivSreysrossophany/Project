@@ -41,7 +41,7 @@
                 <span class="absolute left-3.5 text-slate-400">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 </span>
-                <input v-model="email" type="email" placeholder="parent@example.com" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all" />
+                <input v-model="email" type="email" placeholder="example@example.com" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-10 pr-4 py-3 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009FB7]/30 focus:border-[#009FB7] transition-all" />
               </div>
             </div>
 
@@ -49,7 +49,7 @@
             <div>
               <div class="flex items-center justify-between mb-2">
                 <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Password</label>
-                <RouterLink to="/forgot-password" class="text-xs text-[#009FB7] hover:underline font-medium">forgot password?</RouterLink>
+                
               </div>
               <div class="relative flex items-center">
                 <span class="absolute left-3.5 text-slate-400">
@@ -85,7 +85,7 @@
       <div class="lg:col-span-6 hidden lg:flex flex-col items-center justify-center">
         <div class="relative w-full max-w-lg mb-8">
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000" alt="EduFind Platform" class="w-full h-[380px] object-cover" />
+            <img src="../image/login.jpg" alt="EduFind Platform" class="w-full h-[380px] object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
           </div>
           <div class="absolute -top-4 -right-2 sm:right-4 bg-[#009FB7] text-white px-3.5 py-1.5 rounded-xl shadow-lg flex items-center gap-2 text-[11px] font-semibold">

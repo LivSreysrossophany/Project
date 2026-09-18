@@ -71,9 +71,9 @@
         <!-- Rating / Trust Bar -->
         <div class="mt-8 flex items-center gap-4">
           <div class="flex -space-x-2">
-            <img class="inline-block h-9 w-9 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" alt="User" />
-            <img class="inline-block h-9 w-9 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" alt="User" />
-            <img class="inline-block h-9 w-9 rounded-full ring-2 ring-slate-900 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" alt="User" />
+            <img class="inline-block h-9 w-9 rounded-full ring-2 ring-slate-900 object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT60WqDGnNsjHdkL1ixQAr6ku5Cy87qDVOAiM7bCKqldA&s=10" alt="User" />
+            <img class="inline-block h-9 w-9 rounded-full ring-2 ring-slate-900 object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk71fyfaAL1hZszfyf0bNmzwiCDquWGtMYcGXzEs23Gg&s=10" alt="User" />
+            <img class="inline-block h-9 w-9 rounded-full ring-2 ring-slate-900 object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh-PSn6p16dAuAD7qmWQTgxOB1Ev90OLeYN9Ys_si87XTcrwVtQatbL54&s" alt="User" />
           </div>
           <div>
             <div class="flex items-center text-amber-400 text-xs">
@@ -252,7 +252,7 @@
     <section class="bg-teal-600 text-white py-12 mt-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div>
-          <div class="text-3xl sm:text-4xl font-extrabold mb-1">45k+</div>
+          <div class="text-3xl sm:text-4xl font-extrabold mb-1">8k+</div>
           <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">VERIFIED SCHOLARSHIPS</div>
         </div>
         <div>
@@ -260,11 +260,11 @@
           <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">STUDENT SUCCESS RATE</div>
         </div>
         <div>
-          <div class="text-3xl sm:text-4xl font-extrabold mb-1">120+</div>
+          <div class="text-3xl sm:text-4xl font-extrabold mb-1">40+</div>
           <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">ACTIVE GRANTS</div>
         </div>
         <div>
-          <div class="text-3xl sm:text-4xl font-extrabold mb-1">1.2m</div>
+          <div class="text-3xl sm:text-4xl font-extrabold mb-1">10k</div>
           <div class="text-xs text-teal-100 uppercase tracking-wider font-medium">TOTAL FUNDING FOUND</div>
         </div>
       </div>
@@ -316,9 +316,9 @@
             "I found and won a $5,000 scholarship for my degree in less than a month!"
           </p>
           <div class="flex items-center gap-3 pt-2">
-            <img class="w-8 h-8 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" alt="Sarah" />
+            <img class="w-8 h-8 rounded-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEDrczR28hZLVaaxFIzoY7l8HKa33VZgy-l_-qqiwNkw&s=10" alt="Sarah" />
             <div>
-              <div class="text-xs font-bold">Sarah Williams</div>
+              <div class="text-xs font-bold">Mean Heng </div>
               <div class="text-[10px] text-slate-400">College Student</div>
             </div>
           </div>

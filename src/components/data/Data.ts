@@ -19,7 +19,7 @@ export interface School {
   image: string
 }
 // In this line can change a filter
-export const filterTabsData: string[] = ['All Types', 'Private', 'Charter', 'Boarding']
+export const filterTabsData: string[] = ['All Types', 'Public', 'Private']
 
 export const featuresData: Feature[] = [
   {

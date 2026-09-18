@@ -2,77 +2,95 @@
   <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 pb-16">
     
     <!-- HERO SECTION -->
-    <section 
-  class="relative bg-cover bg-center pt-16 pb-12 px-4 sm:px- lg:px-10 border-b border-slate-500"
-  style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqmwSBCOYWCsXG2wWvvxaBMwGHbwQ5sNyFycanhe1DRw&s=10');"
->
-      <div class="max-w-7xl mx-auto text-center">
-        <!-- Badge -->
-        <span class="inline-block bg-[#E0F4F4] text-[#009FB7] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6">
-          Discover Potential
-        </span>
+    <!-- HERO SECTION -->
+<section class="relative bg-cover bg-center pt-16 pb-20 px-4 sm:px-6 lg:px-10 border-b border-slate-500 overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <img src="../image/bg3.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-slate-900/40"></div>
+
+  <!-- Content Container -->
+  <div class="relative max-w-7xl mx-auto text-center z-10">
+    <!-- Badge -->
+    <span class="inline-block bg-[#E0F4F4] text-[#009FB7] text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-6 ">
+      Discover Potential
+    </span>
+    
+    <!-- Heading -->
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#009FB7] tracking-tight mb-4 drop-shadow-sm">
+      Explore Top Academic Institutions
+    </h1>
+    
+    <p class="text-sm sm:text-base font-medium max-w-2xl mx-auto mb-10 leading-relaxed text-white drop-shadow">
+      Let our smart tool guide you to top scholarships and financial aid built for your educational path.
+    </p>
+
+    <!-- Search Bar Wrapper (Relative Flow) -->
+    <div class="relative bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 text-slate-700">
+      
+      <!-- School Name Input & Dropdown -->
+      <div class="flex-1 flex items-center px-4 py-2 relative">
+        <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input 
+          type="text" 
+          v-model="searchQuery" 
+          placeholder="Search by University Name..." 
+          class="w-full focus:outline-none text-sm bg-transparent" 
+        />
         
-        <!-- Heading -->
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#009FB7] tracking-tight mb-4">
-          Explore Top Academic Institutions
-        </h1>
-        
-        <p class="text-sm sm:text-base font-extrabold max-w-2xl mx-auto mb-10 leading-relaxed text-white drop-shadow-sm">
-  Let our smart tool guide you to top scholarships and financial aid built for your educational path.
-</p>
-
-        <!-- Corrected Search Bar Wrapper -->
-        <div class="bg-white p-2 sm:p-3 rounded-2xl shadow-2xl max-w-3xl mx-auto flex flex-col md:flex-row gap-3 text-slate-700">
-          
-          <!-- School Name Input & Dropdown -->
-          <div class="flex-1 flex items-center px-4 py-2 relative">
-            <svg class="w-5 h-5 text-slate-400 mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input type="text" v-model="searchQuery" placeholder="Search by University Name..." class="w-full focus:outline-none text-sm bg-transparent" />
-            
-            <!-- Dropdown Results List -->
-            <ul v-if="searchQuery.trim() !== '' && searchResults.length > 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50">
-              <li 
-                v-for="school in searchResults" 
-                :key="school.id" 
-                @click="goToSchool(school.id)" 
-                class="px-4 py-3 hover:bg-teal-50 cursor-pointer border-b border-slate-50 last:border-none flex items-center gap-3 transition-colors text-left"
-              >
-                <img :src="school.image" class="w-8 h-8 rounded-md object-cover shrink-0" />
-                <div class="min-w-0">
-                  <div class="text-xs font-bold text-slate-900 truncate">{{ school.name }}</div>
-                  <div class="text-[10px] text-slate-500">{{ school.category }}</div>
-                </div>
-              </li>
-            </ul>
-
-            <!-- No Results Found State -->
-            <div v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 z-50 text-center text-xs text-slate-500">
-              No schools found matching "{{ searchQuery }}"
-            </div>
-          </div>
-
-          <button 
-            @click="executeSearch" 
-            class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition duration-200 shrink-0"
+        <!-- Dropdown Results List -->
+        <ul 
+          v-if="searchQuery.trim() !== '' && searchResults.length > 0" 
+          class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 overflow-hidden z-50 text-left"
+        >
+          <li 
+            v-for="school in searchResults" 
+            :key="school.id" 
+            @click="goToSchool(school.id)" 
+            class="px-4 py-3 hover:bg-teal-50 cursor-pointer border-b border-slate-50 last:border-none flex items-center gap-3 transition-colors"
           >
-            <span>Search Scholarships</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </button>
-        </div> 
+            <img :src="school.image" class="w-8 h-8 rounded-md object-cover shrink-0" />
+            <div class="min-w-0">
+              <div class="text-xs font-bold text-slate-900 truncate">{{ school.name }}</div>
+              <div class="text-[10px] text-slate-500">{{ school.category }}</div>
+            </div>
+          </li>
+        </ul>
 
-        <!-- Recent Searches -->
-        <div class="flex items-center justify-center gap-3 mt-6 text-xs text-slate-500 flex-wrap">
-          <span class="font-bold text-slate-400 uppercase tracking-wider text-[10px]">Recent Searches:</span>
-          <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">Full Funding</router-link>
-          <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">STEM Scholarships</router-link>
-          <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Study Abroad</router-link>
-          <span class="w-1 h-1 rounded-full bg-slate-300"></span>
-          <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">Undergraduate</router-link>
+        <!-- No Results State -->
+        <div 
+          v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" 
+          class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 z-50 text-center text-xs text-slate-500"
+        >
+          No schools found matching "{{ searchQuery }}"
         </div>
       </div>
-    </section>
+
+      <button 
+        @click="executeSearch" 
+        class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition duration-200 shrink-0"
+      >
+        <span>Search Scholarships</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </button>
+    </div> 
+
+    <!-- Recent Searches -->
+    <div class="flex items-center justify-center gap-3 mt-6 text-xs text-slate-200 flex-wrap">
+      <span class="font-bold text-slate-300 uppercase tracking-wider text-[10px]">Recent Searches:</span>
+      <router-link to="/explore?q=STEM" class="hover:text-[#009FB7] transition-colors">Full Funding</router-link>
+      <span class="w-1 h-1 rounded-full bg-slate-400"></span>
+      <router-link to="/explore?zip=95112" class="hover:text-[#009FB7] transition-colors">STEM Scholarships</router-link>
+      <span class="w-1 h-1 rounded-full bg-slate-400"></span>
+      <router-link to="/explore?q=Montessori" class="hover:text-[#009FB7] transition-colors">Study Abroad</router-link>
+      <span class="w-1 h-1 rounded-full bg-slate-400"></span>
+      <router-link to="/explore?q=IB" class="hover:text-[#009FB7] transition-colors">Undergraduate</router-link>
+    </div>
+  </div>
+</section>
 
     <!-- RESULTS SECTION -->
      <section 
@@ -99,7 +117,7 @@
             <h2 class="text-xl font-extrabold text-[#111827]">{{ filteredSchools.length }} Results Found</h2>
             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-1">Showing 1-{{ filteredSchools.length }} of {{ filteredSchools.length }} Schools</p>
           </div>
-
+          
           <!-- Category Filter Buttons -->
           <div class="flex flex-wrap gap-2">
             <button 

@@ -8,7 +8,7 @@
 
   <div class="w-12 h-12 rounded-[18px] overflow-hidden shadow-sm">
     <img
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReySN0r9gdRt0ZBSifPTBFSURIKXXdXXhZPR_JQC2waw&s=10"
+      src="../image/logo.jpg"
       alt="Logo"
       class="w-full h-full object-cover"
     />
