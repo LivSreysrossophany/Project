@@ -62,6 +62,7 @@
                 <div>
                   <div class="flex items-center justify-between mb-2">
                     <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Password</label>
+                    <span class="block text-[11px] font-bold text-[#009FB7] uppercase tracking-wider">forgot password?</span>
                   </div>
                   <div class="relative flex items-center">
                     <span class="absolute left-3.5 text-slate-400">

@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 pb-16">
     
-    <main class="pt-17"> <!-- Added pt-20 here so Hero isn't hidden under navbar -->
+    <main class="pt-17">
       
       <!-- HERO SECTION -->
       <section class="relative bg-cover bg-center pt-16 pb-20 px-4 sm:px-6 lg:px-10 border-b border-slate-500 overflow-hidden">
@@ -58,7 +58,7 @@
                 </li>
               </ul>
 
-              <!-- No Results State -->
+                
               <div 
                 v-else-if="searchQuery.trim() !== '' && searchResults.length === 0" 
                 class="absolute top-full left-0 w-full mt-3 bg-white rounded-xl shadow-2xl border border-slate-100 p-4 z-50 text-center text-xs text-slate-500"
@@ -94,10 +94,9 @@
 
       <!-- RESULTS SECTION -->
       <section 
-        class="relative bg-cover bg-center pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-b border-slate-100 "
-        style="background-image: url('');"
+        class="relative bg-cover bg-center px-4 sm:px-6 lg:px-8 border-b border-slate-100 "
       >
-        <div class="absolute inset-0 bg-white/80"></div>
+        
         <div class="relative max-w-7xl mx-auto text-center"></div>
       </section>
 

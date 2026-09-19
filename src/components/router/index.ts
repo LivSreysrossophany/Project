@@ -7,6 +7,7 @@ import SignUp from "../views/SignUp.vue";
 import Profilepage from "../views/Profile.vue";
 import Viewdetailspage from "../views/Viewdetailspage.vue";
 import Contectpage from "../views/Contectpage.vue";
+import Favorites from "../views/Favorites.vue"; //
 
 const routes = [
   {
@@ -49,6 +50,13 @@ const routes = [
     path: "/contact",
     name: "contact",
     component: Contectpage,
+  },
+  // <-- 2. ADDED FAVORITES ROUTE HERE -->
+  {
+    path: "/favorites",
+    name: "favorites",
+    component: Favorites,
+    meta: { requiresAuth: true } // Protects the page so only logged-in users can see it
   }
 ];
 
