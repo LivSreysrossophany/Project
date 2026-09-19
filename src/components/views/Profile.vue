@@ -1,13 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#F4F8FA] font-sans text-slate-800 antialiased flex flex-col">
     
-    <!-- ========================================== -->
-    <!-- FIXED NAVBAR                               -->
-    <!-- ========================================== -->
-
-    <!-- ========================================== -->
-    <!-- MAIN CONTENT                               -->
-    <!-- ========================================== -->
     <main class="flex-1 px-4 sm:px-6 lg:px-12 pt-[100px] pb-10">
       <div class="max-w-5xl mx-auto">
         

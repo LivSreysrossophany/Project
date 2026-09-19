@@ -1,14 +1,5 @@
 <template>
   <div class="min-h-screen bg-[#f8fafc] font-sans text-slate-800 antialiased">
-    
-    <!-- ========================================== -->
-    <!-- FIXED NAVBAR                               -->
-    <!-- ========================================== -->
-
-
-    <!-- ========================================== -->
-    <!-- MAIN CONTENT (Wrapped with pt-[72px])      -->
-    <!-- ========================================== -->
     <main class="pt-17">
       
       <!-- HERO SECTION -->

@@ -1,14 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 pb-20">
     
-    <!-- ========================================== -->
-    <!-- FIXED NAVBAR                               -->
-    <!-- ========================================== -->
-
-
-    <!-- ========================================== -->
-    <!-- MAIN CONTENT                               -->
-    <!-- ========================================== -->
     <main class="pt-17">
       <!-- Hero Header -->
       <section class="bg-slate-900 text-white pt-20 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">

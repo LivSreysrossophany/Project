@@ -1,14 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#F4F8FA] font-sans text-slate-800 antialiased flex flex-col">
-    
-    <!-- ========================================== -->
-    <!-- FIXED NAVBAR                               -->
-    <!-- ========================================== -->
 
-
-    <!-- ========================================== -->
-    <!-- MAIN CONTENT (Wrapped with padding)        -->
-    <!-- ========================================== -->
     <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-12 pt-[100px] lg:pt-[100px]">
       
       <!-- RESPONSIVE LAYOUT WRAPPER -->

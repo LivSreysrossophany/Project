@@ -1,9 +1,7 @@
 <template>
   <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 antialiased flex flex-col">
     
-    <!-- ========================================== -->
-    <!-- FIXED NAVBAR                               -->
-    <!-- ========================================== -->
+
     <header class="fixed left-0 top-0 w-full bg-white border-b border-gray-100 px-4 md:px-6 py-3 font-sans z-50 shadow-sm">
       <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
         

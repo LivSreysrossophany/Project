@@ -1,15 +1,6 @@
 <template>
   <div class="min-h-screen bg-[#FAFAFA] font-sans text-slate-800 pb-16">
     
-    <!-- ========================================== -->
-    <!-- FIXED NAVBAR (COMBINED)                    -->
-    <!-- ========================================== -->
-
-
-
-    <!-- ========================================== -->
-    <!-- MAIN CONTENT (With padding for navbar)     -->
-    <!-- ========================================== -->
     <main class="pt-17"> <!-- Added pt-20 here so Hero isn't hidden under navbar -->
       
       <!-- HERO SECTION -->
